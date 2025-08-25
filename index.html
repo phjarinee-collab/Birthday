@@ -2,55 +2,57 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>Secret Code</title>
+  <title>ใส่รหัสเพื่อเข้าสู่ความลับ</title>
   <style>
     body {
-      font-family: 'Prompt', sans-serif;
-      background: #f6e9df;
-      margin: 0;
+      font-family: sans-serif;
+      background: #f6e7da;
       display: flex;
+      height: 100vh;
       justify-content: center;
       align-items: center;
-      height: 100vh;
     }
     .container {
-      display: flex;
-      background: #fffaf5;
+      background: white;
       border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      display: flex;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       overflow: hidden;
     }
     .left {
+      background: #f0f0f0;
       padding: 20px;
-      background: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .left img {
-      height: 300px;
-      border-radius: 15px;
+      width: 150px;
+      border-radius: 10px;
     }
     .right {
       padding: 30px;
       text-align: center;
-      min-width: 300px;
     }
     .keypad {
       display: grid;
       grid-template-columns: repeat(3, 80px);
       gap: 10px;
+      margin-top: 20px;
       justify-content: center;
     }
     .key {
-      padding: 20px;
-      font-size: 20px;
-      background: #d1b7a3;
-      border-radius: 10px;
+      background: #d7b9a3;
       border: none;
+      border-radius: 10px;
+      padding: 15px;
+      font-size: 20px;
       cursor: pointer;
-      color: white;
-      transition: background 0.2s;
+      transition: 0.2s;
     }
     .key:hover {
       background: #a67c52;
+      color: white;
     }
     .password {
       font-size: 24px;
@@ -62,7 +64,10 @@
 <body>
   <div class="container">
     <div class="left">
-      <img src="couple.png" alt="couple">
+      <!-- ฝังรูปเป็น Base64 -->
+      <img src="data:image/png;base64,
+      iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAADkWcN1AAAAh1BMVEX///8AAAB/f3+AgICcnJyZmZn29vZ/f3+tra3l5eWysrLw8PCAgICdnZ2QkJBmZmZbW1vQ0NBjY2Ojo6O2trbY2NjOzs6Hh4fPz89aWlpnZ2fHx8c6OjpRUVFeXl7i4uJ1dXUoKCixsbHV1dVlZWWOjo52dnZHR0dnZ2ebm5u6uroXFxcWFhbKysqTk5O5ublvb29ra2uSkpLExMQcHBzY19Q4AAACFUlEQVR4nO3b63aiMBSG4S4iAVciA1yRQUVx///s7E5hshsmNfpjm+nduR7xx+6DkmWpFEAAAAAAAAAAAAAAAAAAD+St5z8l7WcLFl9RvZYoOUnwffClaf2co6TVE8Dy+l2/28PEeqQ8z3fQzuFe28cI9TzHw5R6Rjxx9nsvFhDaz+zVjxbmcrEve6/0PXUj8x6pNw8yrXHFeR1GzJ5XbF+aV18meB8q1B3uVbp3d48pd7g6S2iLX3aYF+OQ/XVuPeTbQZbw3h2kOuL+qZY8W+QfTmyV8cV8KqQ/1VFrRaZKjS3sMbHRU5+yPBmt7Rzw3S61Z8y7Xd+9f9YnqpXJ33eh6adMcl47CzskR3E52Tb9jOuxPz5OaG/fG6DPVsR+z9wJNZ9RjF7Xb0k8GbU+vQvvnB5onmWmeF/H8PZzH8cThvd3smeW+QGzD7eblV/39/j9YzyObhzplMReYnY84xFvJeoX93TqMcAAAAAAAAAAAAAAAAAAID/7x82YxxrRG9p9AAAAABJRU5ErkJggg==" 
+      alt="couple">
     </div>
     <div class="right">
       <h2>🔒 ใส่รหัสเพื่อเข้าสู่ความลับ</h2>
@@ -84,31 +89,36 @@
     </div>
   </div>
 
-<script>
-  let input = "";
-  const correct = "2580";
-  function pressKey(num){
-    if(input.length < 4){
-      input += num;
-      document.getElementById("password").innerText = input.padEnd(4,"_");
+  <script>
+    let input = "";
+    const password = "1234"; // ตั้งรหัสตรงนี้
+    function pressKey(num) {
+      if (input.length < 4) {
+        input += num;
+        updateDisplay();
+      }
     }
-  }
-  function clearKey(){
-    input = input.slice(0,-1);
-    document.getElementById("password").innerText = input.padEnd(4,"_");
-  }
-  function submitKey(){
-    if(input === correct){
-      window.location.href = "birthday.html";
-    } else {
-      alert("รหัสไม่ถูกต้อง ❌");
-      input = "";
-      document.getElementById("password").innerText = "____";
+    function clearKey() {
+      input = input.slice(0, -1);
+      updateDisplay();
     }
-  }
-</script>
+    function updateDisplay() {
+      let display = input.padEnd(4, "_");
+      document.getElementById("password").innerText = display.split("").join(" ");
+    }
+    function submitKey() {
+      if (input === password) {
+        window.location.href = "birthday.html";
+      } else {
+        alert("รหัสผิด ลองใหม่อีกครั้ง!");
+        input = "";
+        updateDisplay();
+      }
+    }
+  </script>
 </body>
 </html>
+
 
 
 
