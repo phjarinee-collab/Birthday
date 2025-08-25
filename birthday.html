@@ -7,37 +7,78 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: linear-gradient(45deg, #ff9a9e, #fad0c4);
       text-align: center;
-      color: white;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.2);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      background-color: #fff0f5;
+      margin: 0;
+      padding: 20px;
     }
     h1 {
-      font-size: 3em;
-      margin-bottom: 20px;
+      color: hotpink;
     }
-    p {
-      font-size: 1.2em;
+    .cake-container {
+      position: relative;
+      display: inline-block;
+    }
+    .cake {
+      width: 300px;
+      border-radius: 20px;
+    }
+    .candle {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: hotpink;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: deeppink;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>🎂 Happy Birthday! 🎉</h1>
-    <p>ขอให้วันนี้เป็นวันที่พิเศษ เต็มไปด้วยความสุขและรอยยิ้ม 💖</p>
+  <h1>🎂 Happy Birthday! 🎂</h1>
+
+  <div class="cake-container">
+    <!-- รูปเค้ก -->
+    <img src="https://i.ibb.co/3BzXnSP/cake.png" alt="Cake" class="cake">
+    <!-- เทียน -->
+    <img src="https://i.ibb.co/W6M2krw/candle-on.png" alt="Candle" id="candle" class="candle">
   </div>
+
+  <div>
+    <button class="btn" onclick="blowCandle()">🕯 เป่าเทียน</button>
+    <button class="btn" onclick="goWish()">💌 ไปหน้าคำอวยพร</button>
+  </div>
+
+  <script>
+    let isLit = true;
+    function blowCandle() {
+      const candle = document.getElementById("candle");
+      if (isLit) {
+        candle.src = "https://i.ibb.co/VJkQSR4/candle-off.png"; // เทียนดับ
+        isLit = false;
+      } else {
+        candle.src = "https://i.ibb.co/W6M2krw/candle-on.png"; // จุดใหม่
+        isLit = true;
+      }
+    }
+
+    function goWish() {
+      window.location.href = "wish.html"; // ไปหน้าอวยพร
+    }
+  </script>
 </body>
 </html>
+
 
 
