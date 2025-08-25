@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background: #ffe6f0;
+    }
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+    .left, .right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .hidden {
+      display: none;
+    }
+    img {
+      max-width: 80%;
+      border-radius: 12px;
+    }
+    .cake {
+      font-size: 100px;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- หน้าแรก -->
+  <div id="page1" class="container">
+    <div class="left">
+      <img src="https://cdn-icons-png.flaticon.com/512/2917/2917995.png" alt="birthday">
+    </div>
+    <div class="right">
+      <h2>ใส่รหัสเพื่อเข้าสู่เซอร์ไพรส์ 🎁</h2>
+      <input type="password" id="password" placeholder="Enter code">
+      <button onclick="checkCode()">เข้าสู่ระบบ</button>
+    </div>
+  </div>
+
+  <!-- หน้าเค้ก -->
+  <div id="page2" class="hidden">
+    <h1>🎂 Happy Birthday 🎂</h1>
+    <div id="cake">🕯️🕯️🕯️</div>
+    <div class="cake">🎂</div>
+    <button onclick="blowCandles()">เป่าเทียน</button>
+    <audio id="music" src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.mid" autoplay loop></audio>
+  </div>
+
+  <!-- หน้าคำอวยพร -->
+  <div id="page3" class="hidden">
+    <h1>💖 คำอวยพรวันเกิด 💖</h1>
+    <p>ขอให้มีความสุขมาก ๆ สุขภาพแข็งแรง สมหวังทุกสิ่ง 🎉✨</p>
+  </div>
+
+  <script>
+    function checkCode() {
+      const pass = document.getElementById('password').value;
+      if (pass === "1234") {
+        document.getElementById('page1').classList.add('hidden');
+        document.getElementById('page2').classList.remove('hidden');
+        document.getElementById('music').play();
+      } else {
+        alert("รหัสไม่ถูกต้อง!");
+      }
+    }
+
+    function blowCandles() {
+      document.getElementById('cake').innerText = "✨✨✨";
+      setTimeout(()=>{
+        document.getElementById('page2').classList.add('hidden');
+        document.getElementById('page3').classList.remove('hidden');
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
