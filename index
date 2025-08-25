@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enter Password</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff0f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      border: 3px solid pink;
+      border-radius: 20px;
+      padding: 30px;
+      display: flex;
+      gap: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .left img {
+      width: 220px;
+      border-radius: 15px;
+    }
+    .right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .password-box {
+      background: pink;
+      color: white;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 70px);
+      gap: 10px;
+    }
+    .keypad button {
+      padding: 15px;
+      font-size: 20px;
+      border: none;
+      border-radius: 50%;
+      background: pink;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .keypad button:hover {
+      background: hotpink;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- รูปด้านซ้าย -->
+    <div class="left">
+      <img src="https://via.placeholder.com/220x300" alt="photo">
+    </div>
+
+    <!-- กรอบด้านขวา -->
+    <div class="right">
+      <div class="password-box">🔒 Enter our password</div>
+      <div class="keypad">
+        <button>1</button><button>2</button><button>3</button>
+        <button>4</button><button>5</button><button>6</button>
+        <button>7</button><button>8</button><button>9</button>
+        <button>*</button><button>0</button><button>#</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
