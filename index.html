@@ -105,19 +105,49 @@
       display.textContent = "🔒 Enter our password";
     }
 
-    function checkPass() {
-      if (input === correctPassword) {
-        display.textContent = "✅ Correct!";
-        setTimeout(() => {
-          window.location.href = "birthday.html"; // ไปหน้า Birthday
-        }, 1000);
-      } else {
-        display.textContent = "❌ Wrong password!";
-        input = "";
-        setTimeout(() => display.textContent = "🔒 Enter our password", 1500);
-      }
+   <script>
+  let input = "";
+  const correctPassword = "3009"; // 🔑 เปลี่ยนรหัสได้ตรงนี้
+  const display = document.getElementById("display");
+
+  function press(num) {
+    input += num;
+    display.textContent = "🔒 " + "*".repeat(input.length);
+  }
+
+  function clearPass() {
+    input = "";
+    display.textContent = "🔒 Enter our password";
+  }
+
+  function checkPass() {
+    if (input === correctPassword) {
+      display.textContent = "✅ Correct!";
+      setTimeout(() => {
+        // ✅ ก่อนจะไป ลองเช็กว่าไฟล์ birthday.html มีจริงมั้ย
+        fetch("birthday.html")
+          .then(res => {
+            if (res.ok) {
+              window.location.href = "birthday.html";
+            } else {
+              console.error("❌ ไม่เจอไฟล์ birthday.html (status: " + res.status + ")");
+              alert("ไม่พบไฟล์ birthday.html ลองเช็คชื่อหรือตำแหน่งไฟล์อีกทีนะคะ");
+            }
+          })
+          .catch(err => {
+            console.error("⚠️ Error:", err);
+            alert("มีปัญหาในการโหลด birthday.html");
+          });
+      }, 1000);
+    } else {
+      display.textContent = "❌ Wrong password!";
+      input = "";
+      setTimeout(() => display.textContent = "🔒 Enter our password", 1500);
     }
-  </script>
+  }
+</script>
+
+     
 </body>
 </html>
 
