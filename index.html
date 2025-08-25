@@ -1,123 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enter Password</title>
+  <title>Happy Birthday</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #fff0f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .container {
-      background: white;
-      border: 3px solid pink;
-      border-radius: 20px;
-      padding: 30px;
-      display: flex;
-      gap: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-    .left img {
-      width: 220px;
-      border-radius: 15px;
-    }
-    .right {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .password-box {
-      background: pink;
-      color: white;
-      font-weight: bold;
-      padding: 10px 20px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      min-width: 200px;
+      font-family: "Segoe UI", sans-serif;
       text-align: center;
+      background: #ffe6f0;
+      margin: 0;
+      padding: 0;
     }
-    .keypad {
-      display: grid;
-      grid-template-columns: repeat(3, 70px);
-      gap: 10px;
-    }
-    .keypad button {
-      padding: 15px;
-      font-size: 20px;
-      border: none;
-      border-radius: 50%;
-      background: pink;
+    .hidden { display: none; }
+    h1 { color: #d63384; }
+    button {
+      background: #d63384;
       color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: 0.2s;
+      font-size: 16px;
     }
-    .keypad button:hover {
-      background: hotpink;
+    button:hover { background: #b0246d; }
+    .cake {
+      font-size: 6rem;
+    }
+    #candles {
+      font-size: 2rem;
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .cake-container {
+      display: inline-block;
+      position: relative;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- รูปด้านซ้าย -->
-    <div class="left">
-      <img src="https://via.placeholder.com/220x300" alt="photo">
-    </div>
 
-    <!-- กรอบด้านขวา -->
-    <div class="right">
-      <div class="password-box" id="display">🔒 Enter our password</div>
-      <div class="keypad">
-        <button onclick="press('1')">1</button>
-        <button onclick="press('2')">2</button>
-        <button onclick="press('3')">3</button>
-        <button onclick="press('4')">4</button>
-        <button onclick="press('5')">5</button>
-        <button onclick="press('6')">6</button>
-        <button onclick="press('7')">7</button>
-        <button onclick="press('8')">8</button>
-        <button onclick="press('9')">9</button>
-        <button onclick="clearPass()">⌫</button>
-        <button onclick="press('0')">0</button>
-        <button onclick="checkPass()">✔</button>
-      </div>
-    </div>
+<!-- หน้าแรก: ใส่รหัส -->
+<div id="page1">
+  <h1>🔑 ใส่รหัสเพื่อเข้าสู่หน้า Birthday</h1>
+  <input type="password" id="password" placeholder="ใส่รหัสที่นี่">
+  <button onclick="checkPassword()">เข้าสู่ระบบ</button>
+</div>
+
+<!-- หน้าสอง: เค้ก -->
+<div id="page2" class="hidden">
+  <h1>🎂 Happy Birthday 🎂</h1>
+  <div class="cake-container">
+    <div class="cake">🎂</div>
+    <div id="candles">🕯️🕯️🕯️</div>
   </div>
+  <div>
+    <button onclick="blowCandles()">เป่าเทียน</button>
+  </div>
+  <audio id="music" src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.mid" autoplay loop></audio>
+  <div id="nextButton" class="hidden">
+    <button onclick="goToPage3()">ไปหน้าคำอวยพร 💌</button>
+  </div>
+</div>
 
-  <script>
-    let input = "";
-    const correctPassword = "3009"; // 🔑 เปลี่ยนรหัสตรงนี้
-    const display = document.getElementById("display");
+<!-- หน้าสาม: คำอวยพร -->
+<div id="page3" class="hidden">
+  <h1>💖 สุขสันต์วันเกิด 💖</h1>
+  <p style="font-size:20px;">ขอให้มีความสุขมากๆ สมหวังในทุกสิ่งที่ปรารถนา<br> รักนะ 💕</p>
+</div>
 
-    function press(num) {
-      input += num;
-      display.textContent = "🔒 " + "*".repeat(input.length);
+<script>
+  // เช็ครหัสผ่าน
+  function checkPassword() {
+    const pass = document.getElementById("password").value;
+    if(pass === "1234"){ // เปลี่ยนรหัสตรงนี้ได้
+      document.getElementById("page1").classList.add("hidden");
+      document.getElementById("page2").classList.remove("hidden");
+    } else {
+      alert("รหัสผิด ลองใหม่อีกครั้งนะ");
     }
+  }
 
-    function clearPass() {
-      input = "";
-      display.textContent = "🔒 Enter our password";
-    }
+  // ฟังก์ชันเป่าเทียน
+  function blowCandles() {
+    document.getElementById("candles").innerHTML = "✨✨✨"; // เทียนดับเป็นประกาย
+    document.getElementById("nextButton").classList.remove("hidden"); // แสดงปุ่มไปหน้าคำอวยพร
+  }
 
-    function checkPass() {
-      if (input === correctPassword) {
-        display.textContent = "✅ Correct!";
-        setTimeout(() => {
-          window.location.href = "birthday.html"; // 👉 ไปหน้า birthday.html
-        }, 1000);
-      } else {
-        display.textContent = "❌ Wrong password!";
-        input = "";
-        setTimeout(() => display.textContent = "🔒 Enter our password", 1500);
-      }
-    }
-  </script>
+  // ไปหน้าคำอวยพร
+  function goToPage3() {
+    document.getElementById("page2").classList.add("hidden");
+    document.getElementById("page3").classList.remove("hidden");
+    document.getElementById("music").pause(); // หยุดเพลง
+  }
+</script>
+
 </body>
 </html>
 
