@@ -49,9 +49,9 @@
       <img src="https://cdn-icons-png.flaticon.com/512/2917/2917995.png" alt="birthday">
     </div>
     <div class="right">
-      <h2>ใส่รหัสเพื่อเข้าสู่เซอร์ไพรส์ 🎁</h2>
+      <h2>Enter Our Password 🎁</h2>
       <input type="password" id="password" placeholder="Enter code">
-      <button onclick="checkCode()">เข้าสู่ระบบ</button>
+      <button onclick="checkCode()">Enter</button>
     </div>
   </div>
 
@@ -73,7 +73,7 @@
   <script>
     function checkCode() {
       const pass = document.getElementById('password').value;
-      if (pass === "1234") {
+      if (pass === "3009") {
         document.getElementById('page1').classList.add('hidden');
         document.getElementById('page2').classList.remove('hidden');
         document.getElementById('music').play();
