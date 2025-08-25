@@ -2,77 +2,67 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ใส่รหัส</title>
+  <title>Secret Code</title>
   <style>
     body {
+      font-family: 'Prompt', sans-serif;
+      background: #f6e9df;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f3e5dc;
-      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100vh;
     }
     .container {
       display: flex;
       background: #fffaf5;
       border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
       overflow: hidden;
-      max-width: 900px;
-      width: 90%;
     }
     .left {
-      flex: 1;
-      background: #ddd;
+      padding: 20px;
+      background: #eee;
     }
     .left img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: 300px;
+      border-radius: 15px;
     }
     .right {
-      flex: 1;
-      padding: 40px;
+      padding: 30px;
       text-align: center;
-      background: #f3e5dc;
-    }
-    h2 {
-      color: #6b4226;
-      margin-bottom: 20px;
-    }
-    .password {
-      font-size: 24px;
-      margin: 20px 0;
-      letter-spacing: 10px;
-      color: #6b4226;
+      min-width: 300px;
     }
     .keypad {
       display: grid;
       grid-template-columns: repeat(3, 80px);
-      gap: 15px;
+      gap: 10px;
       justify-content: center;
     }
     .key {
       padding: 20px;
-      font-size: 18px;
-      border: none;
+      font-size: 20px;
+      background: #d1b7a3;
       border-radius: 10px;
-      background-color: #d1b7a3;
+      border: none;
       cursor: pointer;
-      transition: 0.2s;
-      color: #fff;
+      color: white;
+      transition: background 0.2s;
     }
     .key:hover {
-      background-color: #a67c52;
+      background: #a67c52;
+    }
+    .password {
+      font-size: 24px;
+      margin: 20px;
+      letter-spacing: 8px;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="left">
-      <img src="couple.jpg" alt="รูปคู่">
+      <img src="a4873d74-b45e-49a9-bbfd-97e0e806fdb7.png" alt="couple">
     </div>
     <div class="right">
       <h2>🔒 ใส่รหัสเพื่อเข้าสู่ความลับ</h2>
@@ -87,42 +77,39 @@
         <button class="key" onclick="pressKey('7')">7</button>
         <button class="key" onclick="pressKey('8')">8</button>
         <button class="key" onclick="pressKey('9')">9</button>
-        <button class="key" onclick="clearPassword()">*</button>
+        <button class="key" onclick="clearKey()">⌫</button>
         <button class="key" onclick="pressKey('0')">0</button>
-        <button class="key" onclick="checkPassword()">#</button>
+        <button class="key" onclick="submitKey()">✔</button>
       </div>
     </div>
   </div>
 
-  <script>
-    const correctPassword = "3009";
-    let inputPassword = "";
-
-    function pressKey(num) {
-      if (inputPassword.length < 4) {
-        inputPassword += num;
-        updateDisplay();
-      }
+<script>
+  let input = "";
+  const correct = "2580";
+  function pressKey(num){
+    if(input.length < 4){
+      input += num;
+      document.getElementById("password").innerText = input.padEnd(4,"_");
     }
-    function updateDisplay() {
-      let display = inputPassword.padEnd(4, "_");
-      document.getElementById("password").textContent = display;
+  }
+  function clearKey(){
+    input = input.slice(0,-1);
+    document.getElementById("password").innerText = input.padEnd(4,"_");
+  }
+  function submitKey(){
+    if(input === correct){
+      window.location.href = "birthday.html";
+    } else {
+      alert("รหัสไม่ถูกต้อง ❌");
+      input = "";
+      document.getElementById("password").innerText = "____";
     }
-    function clearPassword() {
-      inputPassword = "";
-      updateDisplay();
-    }
-    function checkPassword() {
-      if (inputPassword === correctPassword) {
-        window.location.href = "cake.html";
-      } else {
-        alert("รหัสผิด ลองใหม่อีกครั้ง!");
-        clearPassword();
-      }
-    }
-  </script>
+  }
+</script>
 </body>
 </html>
+
 
 
 
