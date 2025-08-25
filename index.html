@@ -1,121 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday</title>
+  <title>ใส่รหัส</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f7efe7;
       margin: 0;
-      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f3e5dc;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
     }
-
-    /* หน้าใส่รหัส */
-    #page1 {
+    .container {
+      display: flex;
+      background: #fffaf5;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+      max-width: 900px;
+      width: 90%;
+    }
+    .left {
+      flex: 1;
+      background: #ddd;
+    }
+    .left img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .right {
+      flex: 1;
+      padding: 40px;
       text-align: center;
+      background: #f3e5dc;
     }
-
     h2 {
-      color: #5a3e36;
+      color: #6b4226;
+      margin-bottom: 20px;
     }
-
     .password {
       font-size: 24px;
       margin: 20px 0;
       letter-spacing: 10px;
+      color: #6b4226;
     }
-
     .keypad {
       display: grid;
       grid-template-columns: repeat(3, 80px);
       gap: 15px;
       justify-content: center;
     }
-
     .key {
       padding: 20px;
       font-size: 18px;
       border: none;
       border-radius: 10px;
-      background-color: #d9c7c0;
+      background-color: #d1b7a3;
       cursor: pointer;
       transition: 0.2s;
-    }
-
-    .key:hover {
-      background-color: #c2a79b;
-    }
-
-    /* หน้า Birthday */
-    #page2 {
-      display: none;
-      text-align: center;
       color: #fff;
     }
-
-    .birthday {
-      background-color: #ff7aa2;
-      padding: 50px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    .cake {
-      font-size: 100px;
-      margin: 20px 0;
-      animation: bounce 1s infinite alternate;
-    }
-
-    @keyframes bounce {
-      from { transform: translateY(0px); }
-      to { transform: translateY(-15px); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .key:hover {
+      background-color: #a67c52;
     }
   </style>
 </head>
 <body>
-  <!-- Page 1: ใส่รหัส -->
-  <div id="page1">
-    <h2>🔒 Enter our password</h2>
-    <div id="password" class="password">____</div>
-    <div class="keypad">
-      <button class="key" onclick="pressKey('1')">1</button>
-      <button class="key" onclick="pressKey('2')">2</button>
-      <button class="key" onclick="pressKey('3')">3</button>
-      <button class="key" onclick="pressKey('4')">4</button>
-      <button class="key" onclick="pressKey('5')">5</button>
-      <button class="key" onclick="pressKey('6')">6</button>
-      <button class="key" onclick="pressKey('7')">7</button>
-      <button class="key" onclick="pressKey('8')">8</button>
-      <button class="key" onclick="pressKey('9')">9</button>
-      <button class="key" onclick="clearPassword()">*</button>
-      <button class="key" onclick="pressKey('0')">0</button>
-      <button class="key" onclick="checkPassword()">#</button>
+  <div class="container">
+    <div class="left">
+      <img src="couple.jpg" alt="รูปคู่">
     </div>
-  </div>
-
-  <!-- Page 2: Birthday -->
-  <div id="page2">
-    <div class="birthday">
-      <h1>🎉 Happy Birthday 🎂</h1>
-      <div class="cake">🍰</div>
-      <p>ขอให้วันนี้เป็นวันที่เต็มไปด้วยความสุข 💖</p>
+    <div class="right">
+      <h2>🔒 ใส่รหัสเพื่อเข้าสู่ความลับ</h2>
+      <div id="password" class="password">____</div>
+      <div class="keypad">
+        <button class="key" onclick="pressKey('1')">1</button>
+        <button class="key" onclick="pressKey('2')">2</button>
+        <button class="key" onclick="pressKey('3')">3</button>
+        <button class="key" onclick="pressKey('4')">4</button>
+        <button class="key" onclick="pressKey('5')">5</button>
+        <button class="key" onclick="pressKey('6')">6</button>
+        <button class="key" onclick="pressKey('7')">7</button>
+        <button class="key" onclick="pressKey('8')">8</button>
+        <button class="key" onclick="pressKey('9')">9</button>
+        <button class="key" onclick="clearPassword()">*</button>
+        <button class="key" onclick="pressKey('0')">0</button>
+        <button class="key" onclick="checkPassword()">#</button>
+      </div>
     </div>
   </div>
 
   <script>
-    const correctPassword = "1234"; // ตั้งรหัสตรงนี้
+    const correctPassword = "3009";
     let inputPassword = "";
 
     function pressKey(num) {
@@ -124,21 +104,17 @@
         updateDisplay();
       }
     }
-
     function updateDisplay() {
       let display = inputPassword.padEnd(4, "_");
       document.getElementById("password").textContent = display;
     }
-
     function clearPassword() {
       inputPassword = "";
       updateDisplay();
     }
-
     function checkPassword() {
       if (inputPassword === correctPassword) {
-        document.getElementById("page1").style.display = "none";
-        document.getElementById("page2").style.display = "block";
+        window.location.href = "cake.html";
       } else {
         alert("รหัสผิด ลองใหม่อีกครั้ง!");
         clearPassword();
@@ -147,6 +123,7 @@
   </script>
 </body>
 </html>
+
 
 
 
