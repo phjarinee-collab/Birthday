@@ -6,197 +6,117 @@
   <style>
     body {
       margin: 0;
-      font-family: "Arial", sans-serif;
-      background-color: #f5ebe0;
-      color: #6d4c41;
+      font-family: 'Kanit', sans-serif;
+      background-color: #fde7ec;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      display: flex;
+      background: #fff0f5;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      max-width: 800px;
+      width: 90%;
+      align-items: center;
+    }
+    .left {
+      flex: 1;
       text-align: center;
     }
-    .hidden { display: none; }
-
-    /* หน้าแรก - ใส่รหัส */
-    #page1 {
-      padding: 50px;
-    }
-    .keypad {
-      display: grid;
-      grid-template-columns: repeat(3, 80px);
-      gap: 15px;
-      justify-content: center;
-      margin-top: 20px;
-    }
-    .keypad button {
-      background: #d7ccc8;
-      border: none;
-      border-radius: 15px;
-      font-size: 20px;
-      padding: 15px;
-      cursor: pointer;
-      color: #5d4037;
-      transition: background 0.3s;
-    }
-    .keypad button:hover {
-      background: #bcaaa4;
-    }
-    #passwordDisplay {
-      margin: 20px auto;
-      font-size: 22px;
-      letter-spacing: 10px;
-      font-weight: bold;
-      color: #5d4037;
-    }
-
-    /* หน้าเค้ก */
-    #cakePage {
-      padding: 50px;
-    }
-    #cake {
-      font-size: 80px;
-      margin: 20px 0;
-    }
-    .btn {
-      background: #d7ccc8;
-      border: none;
+    .left img {
+      max-width: 100%;
       border-radius: 20px;
-      font-size: 18px;
-      padding: 10px 20px;
-      cursor: pointer;
-      color: #5d4037;
-      margin-top: 20px;
-      display: none;
     }
-    .btn:hover {
-      background: #bcaaa4;
-    }
-
-    /* หน้าซองจดหมาย */
-    #letterPage {
-      padding: 40px;
-    }
-    .envelope {
-      width: 250px;
-      height: 150px;
-      background: #d7ccc8;
-      margin: 50px auto;
-      position: relative;
-      cursor: pointer;
-      border-radius: 10px;
-    }
-    .flap {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0;
-      height: 0;
-      border-left: 125px solid transparent;
-      border-right: 125px solid transparent;
-      border-bottom: 75px solid #a1887f;
-      border-radius: 5px;
-    }
-    .letter {
-      display: none;
-      background: #fff;
+    .right {
+      flex: 1;
+      text-align: center;
       padding: 20px;
-      margin: 20px auto;
-      width: 80%;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      color: #5d4037;
-      font-size: 18px;
     }
+    h1 {
+      color: #d6336c;
+    }
+    input {
+      padding: 10px;
+      border: 2px solid #d6336c;
+      border-radius: 10px;
+      margin: 10px 0;
+      width: 70%;
+      text-align: center;
+    }
+    button {
+      padding: 10px 20px;
+      background: #d6336c;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #c2185b;
+    }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
-
-  <!-- หน้า 1: รหัสผ่าน -->
-  <div id="page1">
-    <h2>🔒 Enter our password</h2>
-    <div id="passwordDisplay"></div>
-    <div class="keypad">
-      <button onclick="pressNum('1')">1</button>
-      <button onclick="pressNum('2')">2</button>
-      <button onclick="pressNum('3')">3</button>
-      <button onclick="pressNum('4')">4</button>
-      <button onclick="pressNum('5')">5</button>
-      <button onclick="pressNum('6')">6</button>
-      <button onclick="pressNum('7')">7</button>
-      <button onclick="pressNum('8')">8</button>
-      <button onclick="pressNum('9')">9</button>
-      <button onclick="clearPass('*')">*</button>
-      <button onclick="pressNum('0')">0</button>
-      <button onclick="checkPass()">#</button>
+  <!-- หน้า 1 -->
+  <div id="page1" class="container">
+    <div class="left">
+      <img src="your-photo.jpg" alt="รูปคู่" />
+    </div>
+    <div class="right">
+      <h1>🔑 ใส่รหัสเพื่อเข้าสู่ Birthday</h1>
+      <input type="password" id="password" placeholder="ใส่รหัสที่นี่">
+      <br>
+      <button onclick="checkPassword()">เข้าสู่ระบบ</button>
     </div>
   </div>
 
   <!-- หน้า 2: เค้ก -->
   <div id="cakePage" class="hidden">
     <h1>🎂 Happy Birthday 🎂</h1>
-    <div id="cake">🕯️🕯️🕯️<br>🎂</div>
-    <button class="btn" id="blowBtn" onclick="blowCandles()">เป่าเทียน</button>
-    <button class="btn" id="toLetterBtn" onclick="goToLetter()">ไปยังคำอวยพร</button>
+    <div id="candles">🕯️🕯️🕯️</div>
+    <div style="font-size:100px;">🎂</div>
+    <button onclick="blowCandles()">เป่าเทียน</button>
   </div>
 
-  <!-- หน้า 3: ซองจดหมาย -->
+  <!-- หน้า 3: จดหมาย -->
   <div id="letterPage" class="hidden">
-    <h2>💌 เปิดซองจดหมาย</h2>
-    <div class="envelope" onclick="openLetter()">
-      <div class="flap"></div>
+    <div style="text-align:center;">
+      <img src="envelope.png" alt="envelope" style="width:300px;cursor:pointer;" onclick="openLetter()">
     </div>
-    <div class="letter" id="letterText">
-      <p>
-        To My Love 💕<br><br>
-        สุขสันต์วันเกิดนะคะที่รัก 🎂✨  
-        ขอบคุณที่อยู่เคียงข้างกันมาตลอด  
-        ขอให้ปีนี้เป็นปีที่เต็มไปด้วยความสุข ความสำเร็จ  
-        และมีหนูอยู่เคียงข้างเสมอ รักเธอนะ 💖
-      </p>
+    <div id="message" class="hidden" style="margin-top:20px;text-align:center;">
+      <p>สุขสันต์วันเกิดนะคะ 💌<br>ขอให้มีความสุขมากๆ นะ</p>
     </div>
   </div>
 
-<script>
-  let password = "";
-  const correctPassword = "1234"; // กำหนดรหัสตรงนี้
-  const display = document.getElementById("passwordDisplay");
-
-  function pressNum(num) {
-    if(password.length < 4){
-      password += num;
-      display.textContent = "*".repeat(password.length);
+  <script>
+    function checkPassword() {
+      let pass = document.getElementById("password").value;
+      if (pass === "1234") { // รหัสผ่าน
+        document.getElementById("page1").classList.add("hidden");
+        document.getElementById("cakePage").classList.remove("hidden");
+      } else {
+        alert("รหัสผิดนะ ลองใหม่อีกครั้ง 💕");
+      }
     }
-  }
-
-  function clearPass() {
-    password = "";
-    display.textContent = "";
-  }
-
-  function checkPass() {
-    if(password === correctPassword){
-      document.getElementById("page1").classList.add("hidden");
-      document.getElementById("cakePage").classList.remove("hidden");
-      document.getElementById("blowBtn").style.display = "inline-block";
-    } else {
-      alert("รหัสไม่ถูกต้อง ❌");
-      clearPass();
+    function blowCandles() {
+      document.getElementById("candles").innerText = "✨✨✨";
+      setTimeout(()=>{
+        document.getElementById("cakePage").classList.add("hidden");
+        document.getElementById("letterPage").classList.remove("hidden");
+      },1000);
     }
-  }
-
-  function blowCandles(){
-    document.getElementById("cake").innerHTML = "🎂"; 
-    document.getElementById("blowBtn").style.display = "none";
-    document.getElementById("toLetterBtn").style.display = "inline-block";
-  }
-
-  function goToLetter(){
-    document.getElementById("cakePage").classList.add("hidden");
-    document.getElementById("letterPage").classList.remove("hidden");
-  }
-
-  function openLetter(){
-    document.getElementById("letterText").style.display = "block";
-  }
-</script>
-
+    function openLetter() {
+      document.getElementById("message").classList.remove("hidden");
+    }
+  </script>
 </body>
 </html>
+
 
 
