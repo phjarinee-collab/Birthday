@@ -40,6 +40,8 @@
       padding: 10px 20px;
       border-radius: 10px;
       margin-bottom: 15px;
+      min-width: 200px;
+      text-align: center;
     }
     .keypad {
       display: grid;
@@ -70,14 +72,52 @@
 
     <!-- กรอบด้านขวา -->
     <div class="right">
-      <div class="password-box">🔒 Enter our password</div>
+      <div class="password-box" id="display">🔒 Enter our password</div>
       <div class="keypad">
-        <button>1</button><button>2</button><button>3</button>
-        <button>4</button><button>5</button><button>6</button>
-        <button>7</button><button>8</button><button>9</button>
-        <button>*</button><button>0</button><button>#</button>
+        <button onclick="press('1')">1</button>
+        <button onclick="press('2')">2</button>
+        <button onclick="press('3')">3</button>
+        <button onclick="press('4')">4</button>
+        <button onclick="press('5')">5</button>
+        <button onclick="press('6')">6</button>
+        <button onclick="press('7')">7</button>
+        <button onclick="press('8')">8</button>
+        <button onclick="press('9')">9</button>
+        <button onclick="clearPass()">⌫</button>
+        <button onclick="press('0')">0</button>
+        <button onclick="checkPass()">✔</button>
       </div>
     </div>
   </div>
+
+  <script>
+    let input = "";
+    const correctPassword = "1234"; // 🔑 เปลี่ยนรหัสได้ตรงนี้
+    const display = document.getElementById("display");
+
+    function press(num) {
+      input += num;
+      display.textContent = "🔒 " + "*".repeat(input.length);
+    }
+
+    function clearPass() {
+      input = "";
+      display.textContent = "🔒 Enter our password";
+    }
+
+    function checkPass() {
+      if (input === correctPassword) {
+        display.textContent = "✅ Correct!";
+        setTimeout(() => {
+          window.location.href = "birthday.html"; // ไปหน้า Birthday
+        }, 1000);
+      } else {
+        display.textContent = "❌ Wrong password!";
+        input = "";
+        setTimeout(() => display.textContent = "🔒 Enter our password", 1500);
+      }
+    }
+  </script>
 </body>
 </html>
+
