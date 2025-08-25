@@ -5,96 +5,194 @@
   <title>Happy Birthday</title>
   <style>
     body {
-      font-family: "Segoe UI", sans-serif;
-      text-align: center;
-      background: #ffe6f0;
       margin: 0;
-      padding: 0;
+      font-family: "Arial", sans-serif;
+      background-color: #f5ebe0;
+      color: #6d4c41;
+      text-align: center;
     }
     .hidden { display: none; }
-    h1 { color: #d63384; }
-    button {
-      background: #d63384;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin: 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
+
+    /* หน้าแรก - ใส่รหัส */
+    #page1 {
+      padding: 50px;
     }
-    button:hover { background: #b0246d; }
-    .cake {
-      font-size: 6rem;
-    }
-    #candles {
-      font-size: 2rem;
-      position: absolute;
-      top: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    .cake-container {
-      display: inline-block;
-      position: relative;
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 80px);
+      gap: 15px;
+      justify-content: center;
       margin-top: 20px;
+    }
+    .keypad button {
+      background: #d7ccc8;
+      border: none;
+      border-radius: 15px;
+      font-size: 20px;
+      padding: 15px;
+      cursor: pointer;
+      color: #5d4037;
+      transition: background 0.3s;
+    }
+    .keypad button:hover {
+      background: #bcaaa4;
+    }
+    #passwordDisplay {
+      margin: 20px auto;
+      font-size: 22px;
+      letter-spacing: 10px;
+      font-weight: bold;
+      color: #5d4037;
+    }
+
+    /* หน้าเค้ก */
+    #cakePage {
+      padding: 50px;
+    }
+    #cake {
+      font-size: 80px;
+      margin: 20px 0;
+    }
+    .btn {
+      background: #d7ccc8;
+      border: none;
+      border-radius: 20px;
+      font-size: 18px;
+      padding: 10px 20px;
+      cursor: pointer;
+      color: #5d4037;
+      margin-top: 20px;
+      display: none;
+    }
+    .btn:hover {
+      background: #bcaaa4;
+    }
+
+    /* หน้าซองจดหมาย */
+    #letterPage {
+      padding: 40px;
+    }
+    .envelope {
+      width: 250px;
+      height: 150px;
+      background: #d7ccc8;
+      margin: 50px auto;
+      position: relative;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 125px solid transparent;
+      border-right: 125px solid transparent;
+      border-bottom: 75px solid #a1887f;
+      border-radius: 5px;
+    }
+    .letter {
+      display: none;
+      background: #fff;
+      padding: 20px;
+      margin: 20px auto;
+      width: 80%;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      color: #5d4037;
+      font-size: 18px;
     }
   </style>
 </head>
 <body>
 
-<!-- หน้าแรก: ใส่รหัส -->
-<div id="page1">
-  <h1>🔑 ใส่รหัสเพื่อเข้าสู่หน้า Birthday</h1>
-  <input type="password" id="password" placeholder="ใส่รหัสที่นี่">
-  <button onclick="checkPassword()">เข้าสู่ระบบ</button>
-</div>
+  <!-- หน้า 1: รหัสผ่าน -->
+  <div id="page1">
+    <h2>🔒 Enter our password</h2>
+    <div id="passwordDisplay"></div>
+    <div class="keypad">
+      <button onclick="pressNum('1')">1</button>
+      <button onclick="pressNum('2')">2</button>
+      <button onclick="pressNum('3')">3</button>
+      <button onclick="pressNum('4')">4</button>
+      <button onclick="pressNum('5')">5</button>
+      <button onclick="pressNum('6')">6</button>
+      <button onclick="pressNum('7')">7</button>
+      <button onclick="pressNum('8')">8</button>
+      <button onclick="pressNum('9')">9</button>
+      <button onclick="clearPass('*')">*</button>
+      <button onclick="pressNum('0')">0</button>
+      <button onclick="checkPass()">#</button>
+    </div>
+  </div>
 
-<!-- หน้าสอง: เค้ก -->
-<div id="page2" class="hidden">
-  <h1>🎂 Happy Birthday 🎂</h1>
-  <div class="cake-container">
-    <div class="cake">🎂</div>
-    <div id="candles">🕯️🕯️🕯️</div>
+  <!-- หน้า 2: เค้ก -->
+  <div id="cakePage" class="hidden">
+    <h1>🎂 Happy Birthday 🎂</h1>
+    <div id="cake">🕯️🕯️🕯️<br>🎂</div>
+    <button class="btn" id="blowBtn" onclick="blowCandles()">เป่าเทียน</button>
+    <button class="btn" id="toLetterBtn" onclick="goToLetter()">ไปยังคำอวยพร</button>
   </div>
-  <div>
-    <button onclick="blowCandles()">เป่าเทียน</button>
-  </div>
-  <audio id="music" src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.mid" autoplay loop></audio>
-  <div id="nextButton" class="hidden">
-    <button onclick="goToPage3()">ไปหน้าคำอวยพร 💌</button>
-  </div>
-</div>
 
-<!-- หน้าสาม: คำอวยพร -->
-<div id="page3" class="hidden">
-  <h1>💖 สุขสันต์วันเกิด 💖</h1>
-  <p style="font-size:20px;">ขอให้มีความสุขมากๆ สมหวังในทุกสิ่งที่ปรารถนา<br> รักนะ 💕</p>
-</div>
+  <!-- หน้า 3: ซองจดหมาย -->
+  <div id="letterPage" class="hidden">
+    <h2>💌 เปิดซองจดหมาย</h2>
+    <div class="envelope" onclick="openLetter()">
+      <div class="flap"></div>
+    </div>
+    <div class="letter" id="letterText">
+      <p>
+        To My Love 💕<br><br>
+        สุขสันต์วันเกิดนะคะที่รัก 🎂✨  
+        ขอบคุณที่อยู่เคียงข้างกันมาตลอด  
+        ขอให้ปีนี้เป็นปีที่เต็มไปด้วยความสุข ความสำเร็จ  
+        และมีหนูอยู่เคียงข้างเสมอ รักเธอนะ 💖
+      </p>
+    </div>
+  </div>
 
 <script>
-  // เช็ครหัสผ่าน
-  function checkPassword() {
-    const pass = document.getElementById("password").value;
-    if(pass === "1234"){ // เปลี่ยนรหัสตรงนี้ได้
-      document.getElementById("page1").classList.add("hidden");
-      document.getElementById("page2").classList.remove("hidden");
-    } else {
-      alert("รหัสผิด ลองใหม่อีกครั้งนะ");
+  let password = "";
+  const correctPassword = "1234"; // กำหนดรหัสตรงนี้
+  const display = document.getElementById("passwordDisplay");
+
+  function pressNum(num) {
+    if(password.length < 4){
+      password += num;
+      display.textContent = "*".repeat(password.length);
     }
   }
 
-  // ฟังก์ชันเป่าเทียน
-  function blowCandles() {
-    document.getElementById("candles").innerHTML = "✨✨✨"; // เทียนดับเป็นประกาย
-    document.getElementById("nextButton").classList.remove("hidden"); // แสดงปุ่มไปหน้าคำอวยพร
+  function clearPass() {
+    password = "";
+    display.textContent = "";
   }
 
-  // ไปหน้าคำอวยพร
-  function goToPage3() {
-    document.getElementById("page2").classList.add("hidden");
-    document.getElementById("page3").classList.remove("hidden");
-    document.getElementById("music").pause(); // หยุดเพลง
+  function checkPass() {
+    if(password === correctPassword){
+      document.getElementById("page1").classList.add("hidden");
+      document.getElementById("cakePage").classList.remove("hidden");
+      document.getElementById("blowBtn").style.display = "inline-block";
+    } else {
+      alert("รหัสไม่ถูกต้อง ❌");
+      clearPass();
+    }
+  }
+
+  function blowCandles(){
+    document.getElementById("cake").innerHTML = "🎂"; 
+    document.getElementById("blowBtn").style.display = "none";
+    document.getElementById("toLetterBtn").style.display = "inline-block";
+  }
+
+  function goToLetter(){
+    document.getElementById("cakePage").classList.add("hidden");
+    document.getElementById("letterPage").classList.remove("hidden");
+  }
+
+  function openLetter(){
+    document.getElementById("letterText").style.display = "block";
   }
 </script>
 
