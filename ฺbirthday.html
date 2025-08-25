@@ -3,102 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday 🎂</title>
+  <title>Happy Birthday</title>
   <style>
     body {
-      font-family: 'Comic Sans MS', cursive;
-      background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      margin: 0;
-      flex-direction: column;
-      color: #fff;
+      background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+      text-align: center;
+      color: white;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
     h1 {
-      font-size: 3rem;
+      font-size: 3em;
       margin-bottom: 20px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
-    .cake {
-      position: relative;
-      width: 200px;
-      height: 150px;
-      background: #ffb347;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    }
-    .layer {
-      position: absolute;
-      width: 100%;
-      height: 30px;
-      background: #ffcccb;
-      border-radius: 10px;
-      top: 40px;
-    }
-    .layer:nth-child(2) { top: 70px; }
-    .layer:nth-child(3) { top: 100px; }
-    .candle {
-      position: absolute;
-      width: 15px;
-      height: 40px;
-      background: #fff;
-      top: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-radius: 3px;
-    }
-    .flame {
-      position: absolute;
-      width: 15px;
-      height: 20px;
-      background: radial-gradient(circle, yellow 40%, orange 60%, transparent 70%);
-      border-radius: 50%;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: flicker 0.2s infinite alternate;
-    }
-    @keyframes flicker {
-      from { transform: translateX(-50%) scale(1); }
-      to { transform: translateX(-50%) scale(1.2); }
-    }
-    button {
-      margin-top: 30px;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 20px;
-      background: hotpink;
-      color: white;
-      font-size: 18px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover {
-      background: deeppink;
+    p {
+      font-size: 1.2em;
     }
   </style>
 </head>
 <body>
-  <h1>🎉 Happy Birthday! 🎂</h1>
-  <div class="cake">
-    <div class="layer"></div>
-    <div class="layer"></div>
-    <div class="layer"></div>
-    <div class="candle">
-      <div class="flame" id="flame"></div>
-    </div>
+  <div class="card">
+    <h1>🎂 Happy Birthday! 🎉</h1>
+    <p>ขอให้วันนี้เป็นวันที่พิเศษ เต็มไปด้วยความสุขและรอยยิ้ม 💖</p>
   </div>
-  <button onclick="blowCandle()">เป่าเทียน 🕯️</button>
-
-  <script>
-    function blowCandle() {
-      const flame = document.getElementById("flame");
-      flame.style.display = "none";
-      alert("✨ เทียนดับแล้ว ขอให้สมหวังในทุกสิ่งนะ ✨");
-    }
-  </script>
 </body>
 </html>
+
 
