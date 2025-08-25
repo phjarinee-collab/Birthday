@@ -2,72 +2,71 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>ใส่รหัสเพื่อเข้าสู่ความลับ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secret</title>
   <style>
     body {
-      font-family: sans-serif;
-      background: #f6e7da;
+      font-family: 'Tahoma', sans-serif;
+      background-color: #f6e7db;
       display: flex;
-      height: 100vh;
       justify-content: center;
       align-items: center;
+      height: 100vh;
+      margin: 0;
     }
     .container {
-      background: white;
-      border-radius: 20px;
       display: flex;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
       overflow: hidden;
     }
     .left {
-      background: #f0f0f0;
-      padding: 20px;
+      background: #f1f1f1;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 20px;
     }
     .left img {
-      width: 150px;
-      border-radius: 10px;
+      max-width: 200px;
+      border-radius: 15px;
     }
     .right {
       padding: 30px;
       text-align: center;
-    }
-    .keypad {
-      display: grid;
-      grid-template-columns: repeat(3, 80px);
-      gap: 10px;
-      margin-top: 20px;
-      justify-content: center;
-    }
-    .key {
-      background: #d7b9a3;
-      border: none;
-      border-radius: 10px;
-      padding: 15px;
-      font-size: 20px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .key:hover {
-      background: #a67c52;
-      color: white;
     }
     .password {
       font-size: 24px;
       margin: 20px;
       letter-spacing: 8px;
     }
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 80px);
+      gap: 15px;
+      justify-content: center;
+    }
+    .key {
+      padding: 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background: #d1b7a3;
+      cursor: pointer;
+      color: #fff;
+      transition: 0.2s;
+    }
+    .key:hover {
+      background: #a67c52;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="left">
-      <!-- ฝังรูปเป็น Base64 -->
-      <img src="data:image/png;base64,
-      iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAMAAADkWcN1AAAAh1BMVEX///8AAAB/f3+AgICcnJyZmZn29vZ/f3+tra3l5eWysrLw8PCAgICdnZ2QkJBmZmZbW1vQ0NBjY2Ojo6O2trbY2NjOzs6Hh4fPz89aWlpnZ2fHx8c6OjpRUVFeXl7i4uJ1dXUoKCixsbHV1dVlZWWOjo52dnZHR0dnZ2ebm5u6uroXFxcWFhbKysqTk5O5ublvb29ra2uSkpLExMQcHBzY19Q4AAACFUlEQVR4nO3b63aiMBSG4S4iAVciA1yRQUVx///s7E5hshsmNfpjm+nduR7xx+6DkmWpFEAAAAAAAAAAAAAAAAAAD+St5z8l7WcLFl9RvZYoOUnwffClaf2co6TVE8Dy+l2/28PEeqQ8z3fQzuFe28cI9TzHw5R6Rjxx9nsvFhDaz+zVjxbmcrEve6/0PXUj8x6pNw8yrXHFeR1GzJ5XbF+aV18meB8q1B3uVbp3d48pd7g6S2iLX3aYF+OQ/XVuPeTbQZbw3h2kOuL+qZY8W+QfTmyV8cV8KqQ/1VFrRaZKjS3sMbHRU5+yPBmt7Rzw3S61Z8y7Xd+9f9YnqpXJ33eh6adMcl47CzskR3E52Tb9jOuxPz5OaG/fG6DPVsR+z9wJNZ9RjF7Xb0k8GbU+vQvvnB5onmWmeF/H8PZzH8cThvd3smeW+QGzD7eblV/39/j9YzyObhzplMReYnY84xFvJeoX93TqMcAAAAAAAAAAAAAAAAAAID/7x82YxxrRG9p9AAAAABJRU5ErkJggg==" 
-      alt="couple">
+      <!-- 🔹 เรียกรูปตรง ๆ -->
+      <img src="couple.png" alt="couple">
     </div>
     <div class="right">
       <h2>🔒 ใส่รหัสเพื่อเข้าสู่ความลับ</h2>
@@ -91,33 +90,33 @@
 
   <script>
     let input = "";
-    const password = "1234"; // ตั้งรหัสตรงนี้
     function pressKey(num) {
       if (input.length < 4) {
         input += num;
-        updateDisplay();
+        updatePassword();
       }
     }
     function clearKey() {
       input = input.slice(0, -1);
-      updateDisplay();
+      updatePassword();
     }
-    function updateDisplay() {
-      let display = input.padEnd(4, "_");
-      document.getElementById("password").innerText = display.split("").join(" ");
+    function updatePassword() {
+      document.getElementById("password").innerText =
+        input.padEnd(4, "_");
     }
     function submitKey() {
-      if (input === password) {
+      if (input === "1234") {
         window.location.href = "birthday.html";
       } else {
-        alert("รหัสผิด ลองใหม่อีกครั้ง!");
+        alert("รหัสไม่ถูกต้อง");
         input = "";
-        updateDisplay();
+        updatePassword();
       }
     }
   </script>
 </body>
 </html>
+
 
 
 
