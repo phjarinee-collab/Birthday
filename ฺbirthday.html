@@ -2,93 +2,103 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Happy Birthday</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday 🎂</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      background: #ffe6f0;
-    }
-    .container {
-      display: flex;
-      height: 100vh;
-    }
-    .left, .right {
-      flex: 1;
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100vh;
+      margin: 0;
       flex-direction: column;
+      color: #fff;
     }
-    .hidden {
-      display: none;
-    }
-    img {
-      max-width: 80%;
-      border-radius: 12px;
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
     .cake {
-      font-size: 100px;
-      margin-top: 20px;
+      position: relative;
+      width: 200px;
+      height: 150px;
+      background: #ffb347;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    .layer {
+      position: absolute;
+      width: 100%;
+      height: 30px;
+      background: #ffcccb;
+      border-radius: 10px;
+      top: 40px;
+    }
+    .layer:nth-child(2) { top: 70px; }
+    .layer:nth-child(3) { top: 100px; }
+    .candle {
+      position: absolute;
+      width: 15px;
+      height: 40px;
+      background: #fff;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 3px;
+    }
+    .flame {
+      position: absolute;
+      width: 15px;
+      height: 20px;
+      background: radial-gradient(circle, yellow 40%, orange 60%, transparent 70%);
+      border-radius: 50%;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: flicker 0.2s infinite alternate;
+    }
+    @keyframes flicker {
+      from { transform: translateX(-50%) scale(1); }
+      to { transform: translateX(-50%) scale(1.2); }
     }
     button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin-top: 20px;
+      margin-top: 30px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 20px;
+      background: hotpink;
+      color: white;
+      font-size: 18px;
       cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: deeppink;
     }
   </style>
 </head>
 <body>
-
-  <!-- หน้าแรก -->
-  <div id="page1" class="container">
-    <div class="left">
-      <img src="https://cdn-icons-png.flaticon.com/512/2917/2917995.png" alt="birthday">
-    </div>
-    <div class="right">
-      <h2>Enter Our Password 🎁</h2>
-      <input type="password" id="password" placeholder="Enter code">
-      <button onclick="checkCode()">Enter</button>
+  <h1>🎉 Happy Birthday! 🎂</h1>
+  <div class="cake">
+    <div class="layer"></div>
+    <div class="layer"></div>
+    <div class="layer"></div>
+    <div class="candle">
+      <div class="flame" id="flame"></div>
     </div>
   </div>
-
-  <!-- หน้าเค้ก -->
-  <div id="page2" class="hidden">
-    <h1>🎂 Happy Birthday 🎂</h1>
-    <div id="cake">🕯️🕯️🕯️</div>
-    <div class="cake">🎂</div>
-    <button onclick="blowCandles()">เป่าเทียน</button>
-    <audio id="music" src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.mid" autoplay loop></audio>
-  </div>
-
-  <!-- หน้าคำอวยพร -->
-  <div id="page3" class="hidden">
-    <h1>💖 คำอวยพรวันเกิด 💖</h1>
-    <p>ขอให้มีความสุขมาก ๆ สุขภาพแข็งแรง สมหวังทุกสิ่ง 🎉✨</p>
-  </div>
+  <button onclick="blowCandle()">เป่าเทียน 🕯️</button>
 
   <script>
-    function checkCode() {
-      const pass = document.getElementById('password').value;
-      if (pass === "3009") {
-        document.getElementById('page1').classList.add('hidden');
-        document.getElementById('page2').classList.remove('hidden');
-        document.getElementById('music').play();
-      } else {
-        alert("รหัสไม่ถูกต้อง!");
-      }
-    }
-
-    function blowCandles() {
-      document.getElementById('cake').innerText = "✨✨✨";
-      setTimeout(()=>{
-        document.getElementById('page2').classList.add('hidden');
-        document.getElementById('page3').classList.remove('hidden');
-      }, 2000);
+    function blowCandle() {
+      const flame = document.getElementById("flame");
+      flame.style.display = "none";
+      alert("✨ เทียนดับแล้ว ขอให้สมหวังในทุกสิ่งนะ ✨");
     }
   </script>
 </body>
 </html>
+
