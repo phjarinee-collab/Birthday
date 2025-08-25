@@ -92,7 +92,7 @@
 
   <script>
     let input = "";
-    const correctPassword = "3009"; // 🔑 เปลี่ยนรหัสได้ตรงนี้
+    const correctPassword = "3009"; // 🔑 เปลี่ยนรหัสตรงนี้
     const display = document.getElementById("display");
 
     function press(num) {
@@ -109,7 +109,7 @@
       if (input === correctPassword) {
         display.textContent = "✅ Correct!";
         setTimeout(() => {
-          window.location.href = "birthday.html"; // ✅ ไปหน้า birthday.html
+          window.location.href = "birthday.html"; // 👉 ไปหน้า birthday.html
         }, 1000);
       } else {
         display.textContent = "❌ Wrong password!";
@@ -120,4 +120,5 @@
   </script>
 </body>
 </html>
+
 
