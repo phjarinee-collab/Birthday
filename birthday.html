@@ -6,220 +6,187 @@
   <style>
     body {
       font-family: 'Prompt', sans-serif;
-      background: #fff4f4;
+      background: #fff6f5;
       text-align: center;
       padding: 50px;
       overflow: hidden;
     }
 
     h1 {
-      font-size: 40px;
-      color: #b85c5c;
-      margin-bottom: 60px;
+      color: #9c5b4a;
+      font-size: 2em;
     }
 
-    /* 🎂 เค้ก */
+    /* เค้ก */
     .cake {
       position: relative;
-      margin: 20px auto;
-      width: 250px;
-      height: 220px;
-    }
-
-    .layer {
-      width: 250px;
-      height: 60px;
+      margin: 100px auto 20px auto;
+      width: 180px;
+      height: 120px;
+      background: #f5cda7;
       border-radius: 10px;
-      background: #8b4513;
-      margin: 0 auto;
-      position: relative;
-      box-shadow: inset 0 5px #d2691e;
-    }
-    .layer:nth-child(2) {
-      margin-top: -10px;
-      background: #a0522d;
-      box-shadow: inset 0 5px #deb887;
+      box-shadow: inset 0 -10px #e6b185;
+      z-index: 2;
     }
 
-    .cream {
-      width: 250px;
-      height: 20px;
-      background: #fff;
-      border-radius: 0 0 10px 10px;
-      margin: -10px auto 0 auto;
-    }
-
-    /* 🍓 สตรอเบอร์รี่ */
-    .strawberry {
-      width: 40px;
+    /* ครีมขาว */
+    .frosting {
+      position: absolute;
+      top: -30px;
+      left: 0;
+      width: 100%;
       height: 40px;
-      background: red;
-      border-radius: 50% 50% 40% 40%;
-      position: absolute;
-      top: -40px;
-      box-shadow: inset -5px -8px #b22222;
-    }
-    .strawberry::after {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: 12px;
-      width: 15px;
-      height: 15px;
-      background: green;
-      border-radius: 50%;
-    }
-    .strawberry.one { left: 30px; }
-    .strawberry.two { left: 100px; transform: rotate(-15deg);}
-    .strawberry.three { left: 170px; }
-
-    /* 🍫 ช็อกโกแลต */
-    .choco {
-      width: 50px;
-      height: 20px;
-      background: #3e2723;
-      position: absolute;
-      top: -25px;
-      left: 120px;
-      transform: rotate(-30deg);
-      border-radius: 3px;
+      background: #fff1de;
+      border-radius: 15px 15px 0 0;
+      box-shadow: inset 0 -5px #f3d4c0;
     }
 
-    /* 🕯️ เทียนหลายแท่ง */
-    .candle {
-      width: 15px;
-      height: 60px;
-      background: #ccc;
-      position: absolute;
-      top: -100px;
-      border-radius: 3px;
-    }
-    .candle.one { left: 40%; }
-    .candle.two { left: 50%; }
-    .candle.three { left: 60%; }
-
-    .flame {
-      width: 20px;
-      height: 20px;
-      background: orange;
-      border-radius: 50%;
-      position: absolute;
-      top: -25px;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: flicker 0.3s infinite alternate;
-    }
-    @keyframes flicker {
-      from { transform: translateX(-50%) scale(1); opacity: 1; }
-      to   { transform: translateX(-50%) scale(1.2); opacity: 0.8; }
-    }
-
-    /* 🎈 ลูกโป่ง */
-    .balloon {
-      width: 60px;
-      height: 80px;
-      border-radius: 50%;
-      position: absolute;
-      bottom: -150px;
-      animation: floatUp 6s linear infinite;
-    }
-    .balloon::after {
-      content: '';
-      width: 2px;
-      height: 40px;
-      background: #555;
-      position: absolute;
-      top: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    @keyframes floatUp {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-700px); opacity: 0; }
-    }
-
-    .balloon.red { background: #ff4d4d; left: 10%; animation-delay: 0s; }
-    .balloon.blue { background: #4da6ff; left: 80%; animation-delay: 2s; }
-    .balloon.green { background: #4dff88; left: 20%; animation-delay: 4s; }
-    .balloon.yellow { background: #ffd633; left: 70%; animation-delay: 6s; }
-
-    /* 🍬 เม็ดสายรุ้ง */
+    /* โรยสี (sprinkles) */
     .sprinkle {
       width: 6px;
-      height: 6px;
-      border-radius: 50%;
+      height: 12px;
+      border-radius: 3px;
       position: absolute;
-      top: -20px; /* โรยบนหน้าเค้ก */
+      top: 5px;
+      transform: rotate(20deg);
+    }
+    .sprinkle:nth-child(1){ left:20px; background: #ff7eb9;}
+    .sprinkle:nth-child(2){ left:50px; background: #7afcff;}
+    .sprinkle:nth-child(3){ left:80px; background: #feff9c;}
+    .sprinkle:nth-child(4){ left:120px; background: #a29bfe;}
+    .sprinkle:nth-child(5){ left:150px; background: #fd79a8;}
+
+    /* เทียน */
+    .candle {
+      position: absolute;
+      top: -70px;
+      width: 12px;
+      height: 40px;
+      background: #87ceeb;
+      border-radius: 3px;
+    }
+    .candle:nth-child(6){ left:40px; }
+    .candle:nth-child(7){ left:85px; }
+    .candle:nth-child(8){ left:130px; }
+
+    /* เปลวไฟ */
+    .flame {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 14px;
+      background: orange;
+      border-radius: 50%;
+      animation: flicker 0.3s infinite alternate;
     }
 
+    @keyframes flicker {
+      from { transform: translateX(-50%) scale(1); opacity: 1;}
+      to { transform: translateX(-50%) scale(1.2); opacity: 0.7;}
+    }
+
+    /* ปุ่ม */
     button {
-      padding: 15px 30px;
-      background: #f4a6b0;
+      padding: 12px 25px;
+      background: #d1a684;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       color: white;
       cursor: pointer;
       margin-top: 20px;
-      font-size: 18px;
+      font-size: 16px;
     }
     button:hover {
-      background: #d97b87;
+      background: #a67855;
+    }
+
+    /* ลูกโป่ง */
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      width: 60px;
+      height: 80px;
+      border-radius: 50% 50% 50% 50%;
+      background: red;
+      animation: floatUp 8s linear infinite;
+    }
+    .balloon:after {
+      content: "";
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      width: 2px;
+      height: 40px;
+      background: #555;
+    }
+
+    .balloon:nth-child(1){
+      left: 10%;
+      background: #ff7675;
+      animation-delay: 0s;
+    }
+    .balloon:nth-child(2){
+      left: 80%;
+      background: #74b9ff;
+      animation-delay: 2s;
+    }
+    .balloon:nth-child(3){
+      left: 20%;
+      background: #55efc4;
+      animation-delay: 4s;
+    }
+    .balloon:nth-child(4){
+      left: 70%;
+      background: #ffeaa7;
+      animation-delay: 6s;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-700px) scale(1.1); opacity: 0; }
     }
   </style>
 </head>
 <body>
   <h1>🎂 สุขสันต์วันเกิด!</h1>
-
-  <!-- 🎈 ลูกโป่ง -->
-  <div class="balloon red"></div>
-  <div class="balloon blue"></div>
-  <div class="balloon green"></div>
-  <div class="balloon yellow"></div>
-
-  <!-- 🎂 เค้ก -->
-  <div class="cake" id="cake">
-    <div class="candle one"><div class="flame"></div></div>
-    <div class="candle two"><div class="flame"></div></div>
-    <div class="candle three"><div class="flame"></div></div>
-    
-    <div class="strawberry one"></div>
-    <div class="strawberry two"></div>
-    <div class="strawberry three"></div>
-    <div class="choco"></div>
-    <div class="layer"></div>
-    <div class="cream"></div>
-    <div class="layer"></div>
+  <div class="cake">
+    <div class="frosting">
+      <div class="sprinkle"></div>
+      <div class="sprinkle"></div>
+      <div class="sprinkle"></div>
+      <div class="sprinkle"></div>
+      <div class="sprinkle"></div>
+    </div>
+    <div class="candle"><div class="flame"></div></div>
+    <div class="candle"><div class="flame"></div></div>
+    <div class="candle"><div class="flame"></div></div>
   </div>
 
   <button id="btn" onclick="blow()">เป่าเทียน</button>
 
-  <script>
-    // สร้างเม็ดสายรุ้งแบบสุ่ม
-    const cake = document.getElementById("cake");
-    const colors = ["#ff4d4d","#4da6ff","#4dff88","#ffd633","#ff66cc"];
-    for(let i=0; i<25; i++){ 
-      let sprinkle = document.createElement("div");
-      sprinkle.className = "sprinkle";
-      sprinkle.style.background = colors[Math.floor(Math.random()*colors.length)];
-      sprinkle.style.left = (Math.random()*200 + 20) + "px";
-      sprinkle.style.top = (Math.random()*-15 - 5) + "px";
-      cake.appendChild(sprinkle);
-    }
+  <!-- ลูกโป่งลอย -->
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
 
-    // ฟังก์ชันเป่าเทียน
-    function blow(){
-      let flames = document.querySelectorAll(".flame");
-      flames.forEach(f => f.style.display = "none");
-      let btn = document.getElementById("btn");
-      btn.innerText = "ไปหน้าสุดท้าย 💌";
-      btn.setAttribute("onclick","next()");
-    }
-    function next(){
-      window.location.href = "letter.html";
-    }
-  </script>
+<script>
+  function blow(){
+    let flames = document.querySelectorAll(".flame");
+    flames.forEach(f => f.style.display = "none");
+    let btn = document.getElementById("btn");
+    btn.innerText = "ไปหน้าสุดท้าย 💌";
+    btn.setAttribute("onclick","next()");
+  }
+  function next(){
+    window.location.href = "letter.html";
+  }
+</script>
 </body>
 </html>
+
 
 
 
