@@ -17,57 +17,57 @@
       font-size: 2em;
     }
 
-    /* เค้ก */
+    /* 🎂 เค้กทรงกลม */
     .cake {
       position: relative;
-      margin: 100px auto 20px auto;
-      width: 180px;
+      margin: 80px auto 20px auto;
+      width: 200px;
       height: 120px;
       background: #f5cda7;
-      border-radius: 10px;
+      border-radius: 50% / 15%;
       box-shadow: inset 0 -10px #e6b185;
       z-index: 2;
     }
 
-    /* ครีมขาว */
+    /* ครีม */
     .frosting {
       position: absolute;
-      top: -30px;
+      top: -25px;
       left: 0;
       width: 100%;
       height: 40px;
       background: #fff1de;
-      border-radius: 15px 15px 0 0;
+      border-radius: 50% / 40%;
       box-shadow: inset 0 -5px #f3d4c0;
     }
 
-    /* โรยสี (sprinkles) */
+    /* โรยสี */
     .sprinkle {
       width: 6px;
       height: 12px;
       border-radius: 3px;
       position: absolute;
-      top: 5px;
+      top: 8px;
       transform: rotate(20deg);
     }
-    .sprinkle:nth-child(1){ left:20px; background: #ff7eb9;}
-    .sprinkle:nth-child(2){ left:50px; background: #7afcff;}
-    .sprinkle:nth-child(3){ left:80px; background: #feff9c;}
-    .sprinkle:nth-child(4){ left:120px; background: #a29bfe;}
-    .sprinkle:nth-child(5){ left:150px; background: #fd79a8;}
+    .sprinkle:nth-child(1){ left:30px; background: #ff7eb9;}
+    .sprinkle:nth-child(2){ left:70px; background: #7afcff;}
+    .sprinkle:nth-child(3){ left:100px; background: #feff9c;}
+    .sprinkle:nth-child(4){ left:140px; background: #a29bfe;}
+    .sprinkle:nth-child(5){ left:160px; background: #fd79a8;}
 
     /* เทียน */
     .candle {
       position: absolute;
-      top: -70px;
+      top: -60px;
       width: 12px;
       height: 40px;
-      background: #87ceeb;
+      background: #aaa;
       border-radius: 3px;
     }
-    .candle:nth-child(6){ left:40px; }
-    .candle:nth-child(7){ left:85px; }
-    .candle:nth-child(8){ left:130px; }
+    .candle:nth-of-type(1){ left:50px; }
+    .candle:nth-of-type(2){ left:95px; }
+    .candle:nth-of-type(3){ left:140px; }
 
     /* เปลวไฟ */
     .flame {
@@ -109,7 +109,6 @@
       width: 60px;
       height: 80px;
       border-radius: 50% 50% 50% 50%;
-      background: red;
       animation: floatUp 8s linear infinite;
     }
     .balloon:after {
@@ -159,6 +158,7 @@
       <div class="sprinkle"></div>
       <div class="sprinkle"></div>
     </div>
+    <!-- เทียน 3 เล่ม -->
     <div class="candle"><div class="flame"></div></div>
     <div class="candle"><div class="flame"></div></div>
     <div class="candle"><div class="flame"></div></div>
