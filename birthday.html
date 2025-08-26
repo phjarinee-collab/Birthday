@@ -1,207 +1,204 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy Birthday</title>
-  <style>
-    body {
-      font-family: 'Prompt', sans-serif;
-      background: #fff6f5;
-      text-align: center;
-      padding: 50px;
-      overflow: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>สุขสันต์วันเกิด</title>
+<style>
+body {
+  background: #fff6f6;
+  text-align: center;
+  font-family: "Prompt", sans-serif;
+  overflow: hidden;
+}
 
-    h1 {
-      color: #9c5b4a;
-      font-size: 2em;
-    }
+h1 {
+  font-size: 32px;
+  color: #8d4b3e;
+  margin-top: 40px;
+}
 
-    /* 🎂 เค้กทรงกลม */
-    .cake {
-      position: relative;
-      margin: 80px auto 20px auto;
-      width: 220px;
-      height: 130px;
-      background: #f5cda7;
-      border-radius: 50% / 15%;
-      box-shadow: inset 0 -12px #e6b185;
-    }
+/* ====== เค้ก ====== */
+.cake {
+  position: relative;
+  margin: 40px auto;
+  width: 250px;
+  height: 150px;
+  background: #f6cfa8;
+  border-radius: 0 0 120px 120px;
+  box-shadow: inset 0 -10px #d79c6c;
+}
 
-    /* ครีมด้านบน */
-    .frosting {
-      position: absolute;
-      top: -30px;
-      left: 0;
-      width: 100%;
-      height: 50px;
-      background: #fff1de;
-      border-radius: 50% / 40%;
-      box-shadow: inset 0 -6px #f3d4c0;
-    }
+.cake-top {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 270px;
+  height: 60px;
+  background: #fff0de;
+  border-radius: 50% / 40%;
+  overflow: hidden;
+}
 
-    /* ลายครีมไหล */
-    .drip {
-      position: absolute;
-      top: 25px;
-      width: 20px;
-      height: 30px;
-      background: #fff1de;
-      border-radius: 10px;
-    }
-    .drip:nth-child(1){ left:40px; height:25px; }
-    .drip:nth-child(2){ left:90px; height:35px; }
-    .drip:nth-child(3){ left:140px; height:28px; }
-    .drip:nth-child(4){ left:180px; height:22px; }
+/* ครีมที่หยด */
+.drip {
+  position: absolute;
+  width: 30px;
+  height: 40px;
+  background: #fff0de;
+  border-radius: 50%;
+  top: 45px;
+}
+.drip:nth-child(1){ left: 40px; }
+.drip:nth-child(2){ left: 100px; }
+.drip:nth-child(3){ left: 160px; }
+.drip:nth-child(4){ left: 210px; }
 
-    /* โรยสี */
-    .sprinkle {
-      width: 6px;
-      height: 12px;
-      border-radius: 3px;
-      position: absolute;
-      top: 10px;
-      transform: rotate(20deg);
-    }
-    .sprinkle:nth-child(5){ left:40px; background: #ff7eb9;}
-    .sprinkle:nth-child(6){ left:80px; background: #7afcff;}
-    .sprinkle:nth-child(7){ left:120px; background: #feff9c;}
-    .sprinkle:nth-child(8){ left:160px; background: #a29bfe;}
-    .sprinkle:nth-child(9){ left:190px; background: #fd79a8;}
+/* โรยหน้า */
+.sprinkle {
+  position: absolute;
+  width: 10px;
+  height: 5px;
+  border-radius: 3px;
+  top: 15px;
+}
+.sprinkle:nth-child(1){ left: 40px; background:#ff7675; transform: rotate(20deg);}
+.sprinkle:nth-child(2){ left: 80px; background:#74b9ff; transform: rotate(-15deg);}
+.sprinkle:nth-child(3){ left: 120px; background:#ffeaa7; transform: rotate(25deg);}
+.sprinkle:nth-child(4){ left: 160px; background:#55efc4; transform: rotate(-10deg);}
+.sprinkle:nth-child(5){ left: 200px; background:#a29bfe; transform: rotate(15deg);}
 
-    /* เทียน */
-    .candle {
-      position: absolute;
-      top: -70px;
-      width: 14px;
-      height: 45px;
-      background: #aaa;
-      border-radius: 3px;
-    }
-    .candle:nth-of-type(1){ left:55px; }
-    .candle:nth-of-type(2){ left:103px; }
-    .candle:nth-of-type(3){ left:150px; }
+/* เทียน */
+.candle {
+  position: absolute;
+  width: 15px;
+  height: 50px;
+  background: #999;
+  top: -70px;
+  border-radius: 3px;
+}
+.candle:before {
+  content:"";
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  background: orange;
+  border-radius: 50%;
+  box-shadow: 0 0 10px orange;
+  animation: flicker 0.3s infinite alternate;
+}
+.candle.off:before {
+  display: none;  /* ไฟหายเมื่อเป่า */
+}
+.candle:nth-child(1){ left: 80px; }
+.candle:nth-child(2){ left: 120px; }
+.candle:nth-child(3){ left: 160px; }
 
-    /* เปลวไฟ */
-    .flame {
-      position: absolute;
-      top: -18px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 15px;
-      height: 15px;
-      background: orange;
-      border-radius: 50%;
-      animation: flicker 0.3s infinite alternate;
-    }
+@keyframes flicker {
+  from { transform: translateX(-50%) scale(1); opacity: 1; }
+  to   { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
+}
 
-    @keyframes flicker {
-      from { transform: translateX(-50%) scale(1); opacity: 1;}
-      to { transform: translateX(-50%) scale(1.2); opacity: 0.7;}
-    }
+/* ===== ลูกโป่ง ===== */
+.balloon {
+  position: absolute;
+  bottom: -150px;
+  width: 60px;
+  height: 80px;
+  border-radius: 50%;
+  animation: floatUp 8s linear infinite;
+}
+.balloon:after {
+  content: "";
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  width: 2px;
+  height: 40px;
+  background: #555;
+}
+.balloon:nth-child(1){ left: 5%;  background: #ff7675; animation-delay: 0s;}
+.balloon:nth-child(2){ left: 20%; background: #74b9ff; animation-delay: 1.5s;}
+.balloon:nth-child(3){ left: 35%; background: #55efc4; animation-delay: 3s;}
+.balloon:nth-child(4){ left: 55%; background: #ffeaa7; animation-delay: 4.5s;}
+.balloon:nth-child(5){ left: 75%; background: #a29bfe; animation-delay: 6s;}
+.balloon:nth-child(6){ left: 90%; background: #fd79a8; animation-delay: 7.5s;}
 
-    button {
-      padding: 12px 25px;
-      background: #d1a684;
-      border: none;
-      border-radius: 8px;
-      color: white;
-      cursor: pointer;
-      margin-top: 20px;
-      font-size: 16px;
-    }
-    button:hover {
-      background: #a67855;
-    }
+@keyframes floatUp {
+  0%   { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-700px) scale(1.1); opacity: 0; }
+}
 
-    /* ลูกโป่ง */
-    .balloon {
-      position: absolute;
-      bottom: -150px;
-      width: 60px;
-      height: 80px;
-      border-radius: 50%;
-      animation: floatUp 8s linear infinite;
-    }
-    .balloon:after {
-      content: "";
-      position: absolute;
-      bottom: -40px;
-      left: 50%;
-      width: 2px;
-      height: 40px;
-      background: #555;
-    }
+/* ปุ่ม */
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #d8a787;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+button:hover {
+  background: #c98a68;
+}
 
-    .balloon:nth-child(1){
-      left: 10%;
-      background: #ff7675;
-      animation-delay: 0s;
-    }
-    .balloon:nth-child(2){
-      left: 80%;
-      background: #74b9ff;
-      animation-delay: 2s;
-    }
-    .balloon:nth-child(3){
-      left: 20%;
-      background: #55efc4;
-      animation-delay: 4s;
-    }
-    .balloon:nth-child(4){
-      left: 70%;
-      background: #ffeaa7;
-      animation-delay: 6s;
-    }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-700px) scale(1.1); opacity: 0; }
-    }
-  </style>
+/* ปุ่มสุดท้าย */
+#finalBtn {
+  display: none;
+  margin-top: 20px;
+}
+</style>
 </head>
 <body>
-  <h1>🎂 สุขสันต์วันเกิด!</h1>
-  <div class="cake">
-    <div class="frosting">
-      <!-- ลายครีม -->
-      <div class="drip"></div>
-      <div class="drip"></div>
-      <div class="drip"></div>
-      <div class="drip"></div>
-      <!-- โรย -->
-      <div class="sprinkle"></div>
-      <div class="sprinkle"></div>
-      <div class="sprinkle"></div>
-      <div class="sprinkle"></div>
-      <div class="sprinkle"></div>
-    </div>
-    <!-- เทียน 3 เล่ม -->
-    <div class="candle"><div class="flame"></div></div>
-    <div class="candle"><div class="flame"></div></div>
-    <div class="candle"><div class="flame"></div></div>
+
+<h1>🎂 สุขสันต์วันเกิด! 🎉</h1>
+
+<div class="cake">
+  <div class="cake-top">
+    <div class="sprinkle"></div>
+    <div class="sprinkle"></div>
+    <div class="sprinkle"></div>
+    <div class="sprinkle"></div>
+    <div class="sprinkle"></div>
+    <div class="drip"></div>
+    <div class="drip"></div>
+    <div class="drip"></div>
+    <div class="drip"></div>
   </div>
+  <div class="candle"></div>
+  <div class="candle"></div>
+  <div class="candle"></div>
+</div>
 
-  <button id="btn" onclick="blow()">เป่าเทียน</button>
+<button id="blowBtn">เป่าเทียน</button>
+<button id="finalBtn" onclick="window.location.href='lastpage.html'">ไปยังหน้าสุดท้าย</button>
 
-  <!-- ลูกโป่ง -->
-  <div class="balloon"></div>
-  <div class="balloon"></div>
-  <div class="balloon"></div>
-  <div class="balloon"></div>
+<!-- ลูกโป่ง -->
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
+<div class="balloon"></div>
 
 <script>
-  function blow(){
-    let flames = document.querySelectorAll(".flame");
-    flames.forEach(f => f.style.display = "none");
-    let btn = document.getElementById("btn");
-    btn.innerText = "ไปหน้าสุดท้าย 💌";
-    btn.setAttribute("onclick","next()");
-  }
-  function next(){
-    window.location.href = "letter.html";
-  }
+document.getElementById("blowBtn").addEventListener("click", function(){
+  // ดับไฟ (เพิ่ม class off)
+  document.querySelectorAll(".candle").forEach(c => c.classList.add("off"));
+  
+  // ซ่อนปุ่มเป่าเทียน
+  this.style.display = "none";
+  
+  // โชว์ปุ่มไปหน้าสุดท้าย
+  document.getElementById("finalBtn").style.display = "inline-block";
+});
 </script>
+
 </body>
 </html>
 
