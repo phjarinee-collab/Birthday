@@ -1,47 +1,83 @@
-<div id="page2" class="hidden" style="text-align:center;">
-
-  <h1>🎂 Happy Birthday 🎂</h1>
-
-  <!-- เค้กและเทียน -->
-  <div style="position: relative; display: inline-block;">
-    <!-- เค้ก -->
-    <div class="cake">🎂</div>
-
-    <!-- เทียน -->
-    <div id="candles" style="position: absolute; top: -40px; left: 50%; transform: translateX(-50%); font-size: 2rem;">
-      🕯️🕯️🕯️
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday</title>
+  <style>
+    body {
+      font-family: 'Prompt', sans-serif;
+      background: #f6e9df;
+      text-align: center;
+      padding: 50px;
+    }
+    .cake {
+      width: 200px;
+      margin: 50px auto;
+      position: relative;
+    }
+    .candle {
+      width: 10px;
+      height: 40px;
+      background: #fff;
+      margin: auto;
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .flame {
+      width: 15px;
+      height: 15px;
+      background: orange;
+      border-radius: 50%;
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: flicker 0.3s infinite alternate;
+    }
+    @keyframes flicker {
+      from { transform: translateX(-50%) scale(1); opacity: 1;}
+      to { transform: translateX(-50%) scale(1.2); opacity: 0.8;}
+    }
+    button {
+      padding: 15px 30px;
+      background: #d1b7a3;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    button:hover {
+      background: #a67c52;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎂 สุขสันต์วันเกิด!</h1>
+  <div class="cake">
+    <img src="cake.png" width="200">
+    <div class="candle">
+      <div id="flame" class="flame"></div>
     </div>
   </div>
-
-  <!-- ปุ่มเป่าเทียน -->
-  <div style="margin-top: 20px;">
-    <button onclick="blowCandles()">เป่าเทียน</button>
-  </div>
-
-  <!-- เพลง -->
-  <audio id="music" src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.mid" autoplay loop></audio>
-
-  <!-- ปุ่มไปหน้าคำอวยพร -->
-  <div id="nextButton" class="hidden" style="margin-top:20px;">
-    <button onclick="goToPage3()">ไปหน้าคำอวยพร 💌</button>
-  </div>
-
-</div>
+  <button id="btn" onclick="blow()">เป่าเทียน</button>
 
 <script>
-function blowCandles() {
-  // ดับเทียน (แทนที่ 🕯️ ด้วย ❌ หรือ 🔲 หรือเปล่า)
-  document.getElementById("candles").innerHTML = "🕯️ ❌ ❌";
-
-  // แสดงปุ่มไปหน้าคำอวยพร
-  document.getElementById("nextButton").classList.remove("hidden");
-}
-
-function goToPage3() {
-  document.getElementById("page2").classList.add("hidden");
-  document.getElementById("page3").classList.remove("hidden");
-}
+  function blow(){
+    document.getElementById("flame").style.display = "none";
+    let btn = document.getElementById("btn");
+    btn.innerText = "ไปหน้าสุดท้าย 💌";
+    btn.setAttribute("onclick","next()");
+  }
+  function next(){
+    window.location.href = "letter.html";
+  }
 </script>
+</body>
+</html>
 
 
 
