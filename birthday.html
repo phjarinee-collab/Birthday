@@ -15,14 +15,15 @@
     h1 {
       font-size: 40px;
       color: #b85c5c;
+      margin-bottom: 60px;
     }
 
     /* 🎂 เค้ก */
     .cake {
       position: relative;
-      margin: 50px auto;
+      margin: 20px auto;
       width: 250px;
-      height: 200px;
+      height: 220px;
     }
 
     .layer {
@@ -72,31 +73,31 @@
     .strawberry.two { left: 100px; transform: rotate(-15deg);}
     .strawberry.three { left: 170px; }
 
-    /* 🍫 ช็อกโกแลตแท่ง */
+    /* 🍫 ช็อกโกแลต */
     .choco {
       width: 50px;
       height: 20px;
       background: #3e2723;
       position: absolute;
-      top: -30px;
+      top: -25px;
       left: 120px;
-      transform: rotate(20deg);
+      transform: rotate(-30deg);
       border-radius: 3px;
     }
 
-    /* 🕯️ เทียน */
+    /* 🕯️ เทียนหลายแท่ง */
     .candle {
       width: 15px;
       height: 60px;
-      background: #fff;
+      background: #ccc;
       position: absolute;
       top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
       border-radius: 3px;
     }
+    .candle.one { left: 40%; }
+    .candle.two { left: 50%; }
+    .candle.three { left: 60%; }
 
-    /* 🔥 ไฟเทียน */
     .flame {
       width: 20px;
       height: 20px;
@@ -117,7 +118,7 @@
     .balloon {
       width: 60px;
       height: 80px;
-      border-radius: 50% 50% 50% 50%;
+      border-radius: 50%;
       position: absolute;
       bottom: -150px;
       animation: floatUp 6s linear infinite;
@@ -142,7 +143,15 @@
     .balloon.green { background: #4dff88; left: 20%; animation-delay: 4s; }
     .balloon.yellow { background: #ffd633; left: 70%; animation-delay: 6s; }
 
-    /* ปุ่ม */
+    /* 🍬 เม็ดสายรุ้ง */
+    .sprinkle {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      position: absolute;
+      top: -20px; /* โรยบนหน้าเค้ก */
+    }
+
     button {
       padding: 15px 30px;
       background: #f4a6b0;
@@ -168,10 +177,11 @@
   <div class="balloon yellow"></div>
 
   <!-- 🎂 เค้ก -->
-  <div class="cake">
-    <div class="candle">
-      <div id="flame" class="flame"></div>
-    </div>
+  <div class="cake" id="cake">
+    <div class="candle one"><div class="flame"></div></div>
+    <div class="candle two"><div class="flame"></div></div>
+    <div class="candle three"><div class="flame"></div></div>
+    
     <div class="strawberry one"></div>
     <div class="strawberry two"></div>
     <div class="strawberry three"></div>
@@ -184,18 +194,33 @@
   <button id="btn" onclick="blow()">เป่าเทียน</button>
 
   <script>
+    // สร้างเม็ดสายรุ้งแบบสุ่ม
+    const cake = document.getElementById("cake");
+    const colors = ["#ff4d4d","#4da6ff","#4dff88","#ffd633","#ff66cc"];
+    for(let i=0; i<25; i++){ 
+      let sprinkle = document.createElement("div");
+      sprinkle.className = "sprinkle";
+      sprinkle.style.background = colors[Math.floor(Math.random()*colors.length)];
+      sprinkle.style.left = (Math.random()*200 + 20) + "px";
+      sprinkle.style.top = (Math.random()*-15 - 5) + "px";
+      cake.appendChild(sprinkle);
+    }
+
+    // ฟังก์ชันเป่าเทียน
     function blow(){
-      document.getElementById("flame").style.display = "none"; // ดับไฟ
+      let flames = document.querySelectorAll(".flame");
+      flames.forEach(f => f.style.display = "none");
       let btn = document.getElementById("btn");
       btn.innerText = "ไปหน้าสุดท้าย 💌";
       btn.setAttribute("onclick","next()");
     }
     function next(){
-      window.location.href = "letter.html"; // ไปหน้าซองจดหมาย
+      window.location.href = "letter.html";
     }
   </script>
 </body>
 </html>
+
 
 
 
