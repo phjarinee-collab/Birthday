@@ -2,117 +2,120 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Secret</title>
+  <title>Happy Birthday</title>
   <style>
     body {
-      font-family: 'Tahoma', sans-serif;
-      background-color: #f6e7db;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
+      font-family: 'Prompt', sans-serif;
+      background: #f6e9df;
+      text-align: center;
+      padding: 50px;
     }
-    .container {
-      display: flex;
+    h1 {
+      font-size: 36px;
+      color: #a67c52;
+    }
+
+    /* 🎂 Cake */
+    .cake {
+      position: relative;
+      width: 200px;
+      margin: 50px auto;
+    }
+    .plate {
+      width: 220px;
+      height: 20px;
+      background: #d1b7a3;
+      border-radius: 50%;
+      margin: auto;
+    }
+    .layer {
+      width: 200px;
+      height: 60px;
+      background: #a67c52;
+      border-radius: 20px;
+      margin: auto;
+    }
+    .layer-top {
+      margin-top: -40px;
+      background: #c9a574;
+    }
+    .icing {
+      width: 200px;
+      height: 30px;
       background: #fff;
       border-radius: 20px;
-      box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
-      overflow: hidden;
+      margin: auto;
+      margin-top: -40px;
     }
-    .left {
-      background: #f1f1f1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+
+    /* 🕯️ Candle */
+    .candle {
+      width: 12px;
+      height: 50px;
+      background: #fff;
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
     }
-    .left img {
-      max-width: 200px;
-      border-radius: 15px;
+
+    /* 🔥 Flame */
+    .flame {
+      width: 15px;
+      height: 15px;
+      background: orange;
+      border-radius: 50%;
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: flicker 0.3s infinite alternate;
     }
-    .right {
-      padding: 30px;
-      text-align: center;
+    @keyframes flicker {
+      from { transform: translateX(-50%) scale(1); opacity: 1; }
+      to   { transform: translateX(-50%) scale(1.2); opacity: 0.8; }
     }
-    .password {
-      font-size: 24px;
-      margin: 20px;
-      letter-spacing: 8px;
-    }
-    .keypad {
-      display: grid;
-      grid-template-columns: repeat(3, 80px);
-      gap: 15px;
-      justify-content: center;
-    }
-    .key {
-      padding: 20px;
-      font-size: 18px;
+
+    /* ปุ่ม */
+    button {
+      padding: 15px 30px;
+      background: #d1b7a3;
       border: none;
       border-radius: 10px;
-      background: #d1b7a3;
+      color: white;
       cursor: pointer;
-      color: #fff;
-      transition: 0.2s;
+      margin-top: 20px;
+      font-size: 18px;
     }
-    .key:hover {
+    button:hover {
       background: #a67c52;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="left">
-      <!-- 🔹 เรียกรูปตรง ๆ -->
-      <img src="https://raw.githubusercontent.com/phjarinee-collab/Birthday/main/couple.jpg" alt=>
-     
-    </div>
-    <div class="right">
-      <h2>🔒 ใส่รหัสเพื่อเข้าสู่ความลับ</h2>
-      <div id="password" class="password">____</div>
-      <div class="keypad">
-        <button class="key" onclick="pressKey('1')">1</button>
-        <button class="key" onclick="pressKey('2')">2</button>
-        <button class="key" onclick="pressKey('3')">3</button>
-        <button class="key" onclick="pressKey('4')">4</button>
-        <button class="key" onclick="pressKey('5')">5</button>
-        <button class="key" onclick="pressKey('6')">6</button>
-        <button class="key" onclick="pressKey('7')">7</button>
-        <button class="key" onclick="pressKey('8')">8</button>
-        <button class="key" onclick="pressKey('9')">9</button>
-        <button class="key" onclick="clearKey()">⌫</button>
-        <button class="key" onclick="pressKey('0')">0</button>
-        <button class="key" onclick="submitKey()">✔</button>
-      </div>
+  <h1>🎂 สุขสันต์วันเกิด!</h1>
+
+  <div class="cake">
+    <div class="plate"></div>
+    <div class="layer layer-bottom"></div>
+    <div class="layer layer-top"></div>
+    <div class="icing"></div>
+    <div class="candle">
+      <div id="flame" class="flame"></div>
     </div>
   </div>
 
+  <button id="btn" onclick="blow()">เป่าเทียน</button>
+
   <script>
-    let input = "";
-    function pressKey(num) {
-      if (input.length < 4) {
-        input += num;
-        updatePassword();
-      }
+    function blow(){
+      document.getElementById("flame").style.display = "none"; // ดับไฟ
+      let btn = document.getElementById("btn");
+      btn.innerText = "ไปหน้าสุดท้าย 💌";
+      btn.setAttribute("onclick","next()");
     }
-    function clearKey() {
-      input = input.slice(0, -1);
-      updatePassword();
-    }
-    function updatePassword() {
-      document.getElementById("password").innerText =
-        input.padEnd(4, "_");
-    }
-    function submitKey() {
-      if (input === "3009") {
-        window.location.href = "birthday.html";
-      } else {
-        alert("รหัสไม่ถูกต้อง");
-        input = "";
-        updatePassword();
-      }
+    function next(){
+      window.location.href = "letter.html"; // ไปหน้าซองจดหมาย
     }
   </script>
 </body>
