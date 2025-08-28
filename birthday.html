@@ -24,11 +24,12 @@
   /* 🎂 Cake (rectangle) */
   .cake {
     position: relative;
-    width: 300px;
+    width: 320px;
     height: 200px;
     background: linear-gradient(#87ceeb, #6bbce0);
     border-radius: 20px;
     box-shadow: inset 0 -10px #5a9cbf;
+    margin-top: 20px;
     margin-bottom: 60px;
     overflow: hidden;
   }
@@ -59,15 +60,22 @@
   /* Candle */
   .candle {
     position: absolute;
-    top: -80px; /* ขยับขึ้นไปอยู่บนครีม */
-    width: 14px;
-    height: 60px;
-    background: repeating-linear-gradient(45deg, #fff, #fff 6px, #ff69b4 6px, #ff69b4 12px);
+    bottom: 140px;  /* ยึดให้อยู่บนเค้ก ไม่บังข้อความ */
+    width: 16px;
+    height: 70px;
     border-radius: 3px;
+    background: repeating-linear-gradient(
+      45deg,
+      #ff69b4, #ff69b4 6px,
+      #fff 6px, #fff 12px,
+      #87ceeb 12px, #87ceeb 18px,
+      #fff 18px, #fff 24px,
+      #ffa500 24px, #ffa500 30px
+    ); /* ทำลายสายรุ้งแนวเฉียง */
   }
-  .candle:nth-child(1){ left: 80px; }
-  .candle:nth-child(2){ left: 140px; }
-  .candle:nth-child(3){ left: 200px; }
+  .candle:nth-child(2){ left: 100px; }
+  .candle:nth-child(3){ left: 150px; }
+  .candle:nth-child(4){ left: 200px; }
 
   /* Flame */
   .flame {
@@ -126,38 +134,7 @@
   <h1>🎂 สุขสันต์วันเกิด! 🎉</h1>
 
   <div class="cake">
-    <div class="cream-top"></div>
-    <div class="candle"><div class="flame"></div></div>
-    <div class="candle"><div class="flame"></div></div>
-    <div class="candle"><div class="flame"></div></div>
-  </div>
+    <div cla
 
-  <button id="blowBtn">เป่าเทียน</button>
-  <button id="nextBtn" style="display:none;">ไปหน้าสาม</button>
-
-  <script>
-    // 🎈 Balloons
-    const colors = ["red","blue","green","purple","orange","pink"];
-    for(let i=0;i<12;i++){
-      let b=document.createElement("div");
-      b.className="balloon";
-      b.style.left=Math.random()*window.innerWidth+"px";
-      b.style.background=colors[Math.floor(Math.random()*colors.length)];
-      b.style.animationDuration=(6+Math.random()*5)+"s";
-      document.body.appendChild(b);
-    }
-
-    // Blow Candles
-    document.getElementById("blowBtn").addEventListener("click",()=>{
-      document.querySelectorAll(".flame").forEach(f=>f.style.display="none");
-      document.getElementById("blowBtn").style.display="none";
-      document.getElementById("nextBtn").style.display="inline-block";
-    });
-    document.getElementById("nextBtn").addEventListener("click",()=>{
-      window.location.href="page3.html";
-    });
-  </script>
-</body>
-</html>
 
 
