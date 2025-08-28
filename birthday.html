@@ -1,140 +1,57 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<title>Birthday Cake</title>
-<style>
-  body {
-    background: #fff6f6;
-    font-family: 'Segoe UI', sans-serif;
-    text-align: center;
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  h1 {
-    margin-bottom: 20px;
-    font-size: 2em;
-    color: #6b3e26;
-  }
+  <meta charset="UTF-8">
+  <title>สุขสันต์วันเกิด</title>
+  <style>
+    body {
+      font-family: "Prompt", sans-serif;
+      background-color: #fff5f5;
+      text-align: center;
+      padding: 30px;
+    }
 
-  /* 🎂 Cake (rectangle) */
-  .cake {
-    position: relative;
-    width: 320px;
-    height: 200px;
-    background: linear-gradient(#87ceeb, #6bbce0);
-    border-radius: 20px;
-    box-shadow: inset 0 -10px #5a9cbf;
-    margin-top: 20px;
-    margin-bottom: 60px;
-    overflow: hidden;
-  }
+    h1 {
+      font-size: 28px;
+      color: #5c2c0c;
+    }
 
-  /* White Cream Top */
-  .cream-top {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background: #fff;
-    border-radius: 20px 20px 0 0;
-  }
+    /* เค้ก */
+    .cake {
+      position: relative;
+      width: 320px;
+      height: 200px;
+      background: linear-gradient(#87ceeb, #6bbce0);
+      border-radius: 20px;
+      box-shadow: inset 0 -10px #5a9cbf;
+      margin: 40px auto;
+      overflow: hidden;
+    }
 
-  /* Cream Drips */
-  .cream-top::after {
-    content: "";
-    position: absolute;
-    bottom: -20px;
-    left: 0;
-    width: 100%;
-    height: 40px;
-    background: radial-gradient(circle at 30px 20px, #fff 20px, transparent 21px) repeat-x;
-    background-size: 60px 40px;
-  }
+    /* ชั้นครีมด้านบน */
+    .cream-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: #fff;
+      border-radius: 20px 20px 0 0;
+    }
 
-  /* Candle */
-  .candle {
-    position: absolute;
-    bottom: 140px;  /* ยึดให้อยู่บนเค้ก ไม่บังข้อความ */
-    width: 16px;
-    height: 70px;
-    border-radius: 3px;
-    background: repeating-linear-gradient(
-      45deg,
-      #ff69b4, #ff69b4 6px,
-      #fff 6px, #fff 12px,
-      #87ceeb 12px, #87ceeb 18px,
-      #fff 18px, #fff 24px,
-      #ffa500 24px, #ffa500 30px
-    ); /* ทำลายสายรุ้งแนวเฉียง */
-  }
-  .candle:nth-child(2){ left: 100px; }
-  .candle:nth-child(3){ left: 150px; }
-  .candle:nth-child(4){ left: 200px; }
+    /* ลายครีมหยด */
+    .cream-drip {
+      position: absolute;
+      top: 55px;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: radial-gradient(circle at 20px 10px, #fff 20px, transparent 21px) repeat-x;
+      background-size: 60px 40px;
+    }
 
-  /* Flame */
-  .flame {
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 16px;
-    height: 20px;
-    background: radial-gradient(circle, #ff0 40%, orange 70%, transparent 80%);
-    border-radius: 50%;
-    animation: flicker 0.3s infinite;
-  }
-  @keyframes flicker {
-    0% { transform: translateX(-50%) scale(1); opacity: 1; }
-    50% { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
-    100% { transform: translateX(-50%) scale(1); opacity: 1; }
-  }
-
-  /* Balloons */
-  .balloon {
-    position: absolute;
-    width: 40px;
-    height: 50px;
-    border-radius: 50%;
-    opacity: 0.8;
-    animation: float 8s linear infinite;
-  }
-  .balloon::after {
-    content: "";
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    width: 2px;
-    height: 30px;
-    background: #666;
-  }
-  @keyframes float {
-    0% { transform: translateY(100vh); }
-    100% { transform: translateY(-200px); }
-  }
-
-  button {
-    background: #c98866;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    color: white;
-    font-size: 1em;
-    cursor: pointer;
-    margin-top: 15px;
-  }
-</style>
-</head>
-<body>
-  <h1>🎂 สุขสันต์วันเกิด! 🎉</h1>
-
-  <div class="cake">
-    <div cla
-
+    /* เทียน */
+    .candle {
+      position: abs
 
 
