@@ -8,25 +8,31 @@
       font-family: "Prompt", sans-serif;
       background-color: #fff5f5;
       text-align: center;
-      padding: 30px;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       overflow: hidden;
     }
 
     h1 {
-      font-size: 28px;
+      font-size: 32px;
       color: #5c2c0c;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
 
     /* 🎂 เค้ก */
     .cake {
       position: relative;
-      width: 320px;
-      height: 200px;
+      width: 300px;
+      height: 180px;
       background: linear-gradient(#87ceeb, #6bbce0);
-      border-radius: 20px;
+      border-radius: 15px;
       box-shadow: inset 0 -10px #5a9cbf;
-      margin: 0 auto;
+      margin: 0 auto 40px auto;
       overflow: hidden;
     }
 
@@ -36,26 +42,26 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 60px;
+      height: 50px;
       background: #fff;
-      border-radius: 20px 20px 0 0;
+      border-radius: 15px 15px 0 0;
     }
 
-    /* ครีมหยดสีขาว */
+    /* ครีมหยด */
     .cream-drip {
       position: absolute;
-      top: 55px;
+      top: 45px;
       left: 0;
       width: 100%;
-      height: 25px;
-      background: radial-gradient(circle at 15px 0px, white 15px, transparent 16px) repeat-x;
-      background-size: 40px 25px;
+      height: 20px;
+      background: radial-gradient(circle at 10px 0px, white 8px, transparent 9px) repeat-x;
+      background-size: 30px 20px;
     }
 
     /* 🕯️ เทียน */
     .candle {
       position: absolute;
-      bottom: 120px; /* วางอยู่บนเค้ก */
+      top: -40px; /* ไม่ให้บังข้อความ */
       width: 14px;
       height: 50px;
       background: repeating-linear-gradient(
@@ -68,10 +74,9 @@
       border-radius: 3px;
     }
 
-    /* ตำแหน่งเทียน */
-    .candle:nth-child(3) { left: 90px; }
-    .candle:nth-child(4) { left: 150px; }
-    .candle:nth-child(5) { left: 210px; }
+    .candle:nth-child(3) { left: 80px; }
+    .candle:nth-child(4) { left: 140px; }
+    .candle:nth-child(5) { left: 200px; }
 
     /* เปลวไฟ */
     .flame {
@@ -79,8 +84,8 @@
       top: -18px;
       left: 50%;
       transform: translateX(-50%);
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       background: radial-gradient(circle, yellow 40%, orange 70%);
       border-radius: 50%;
       animation: flicker 0.3s infinite alternate;
@@ -96,8 +101,7 @@
       position: absolute;
       width: 50px;
       height: 65px;
-      border-radius: 50% 50% 50% 50%;
-      background-color: red;
+      border-radius: 50%;
       animation: float 6s ease-in-out infinite;
     }
 
@@ -111,30 +115,14 @@
       background: #555;
     }
 
-    .balloon:nth-child(1) {
-      left: 10%;
-      background: red;
-      animation-delay: 0s;
-    }
-    .balloon:nth-child(2) {
-      right: 10%;
-      background: blue;
-      animation-delay: 2s;
-    }
-    .balloon:nth-child(3) {
-      left: 20%;
-      background: green;
-      animation-delay: 4s;
-    }
-    .balloon:nth-child(4) {
-      right: 20%;
-      background: orange;
-      animation-delay: 1s;
-    }
+    .balloon.red    { background: red; left: 10%; animation-delay: 0s; }
+    .balloon.blue   { background: blue; right: 10%; animation-delay: 2s; }
+    .balloon.green  { background: green; left: 20%; animation-delay: 1s; }
+    .balloon.orange { background: orange; right: 20%; animation-delay: 3s; }
 
     @keyframes float {
       0%   { transform: translateY(0); }
-      50%  { transform: translateY(-30px); }
+      50%  { transform: translateY(-40px); }
       100% { transform: translateY(0); }
     }
 
@@ -148,7 +136,7 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      margin-top: 30px;
+      margin-top: 20px;
       box-shadow: 0 4px #a86b55;
     }
 
@@ -161,10 +149,10 @@
   <h1>🎂 สุขสันต์วันเกิด! 🎉</h1>
 
   <!-- ลูกโป่ง -->
-  <div class="balloon"></div>
-  <div class="balloon"></div>
-  <div class="balloon"></div>
-  <div class="balloon"></div>
+  <div class="balloon red"></div>
+  <div class="balloon blue"></div>
+  <div class="balloon green"></div>
+  <div class="balloon orange"></div>
 
   <!-- เค้ก -->
   <div class="cake">
@@ -180,5 +168,6 @@
   <button class="btn">เป่าเทียน</button>
 </body>
 </html>
+
 
 
