@@ -2,218 +2,35 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>สุขสันต์วันเกิด 🎂</title>
+  <title>Happy Birthday</title>
   <style>
     body {
+      background: #fff6f6;
+      font-family: "Prompt", sans-serif;
       text-align: center;
-      background-color: #fff6f6;
-      font-family: "Arial", sans-serif;
-      overflow: hidden;
       margin: 0;
       padding: 0;
     }
 
     h1 {
-      color: #7a3e3e;
       margin-top: 20px;
-      position: relative;
-      z-index: 10;
+      font-size: 2.2em;
+      color: #6a2c2c;
     }
 
-    /* 🎈 ลูกโป่ง */
-    .balloon {
-      position: absolute;
-      bottom: -150px;
-      width: 60px;
-      height: 80px;
-      border-radius: 50%;
-      opacity: 0.8;
-      animation: floatUp linear infinite;
-    }
-    .balloon::after {
-      content: "";
-      position: absolute;
-      top: 80px;
-      left: 28px;
-      width: 4px;
-      height: 60px;
-      background: #555;
-    }
-    @keyframes floatUp {
-      from { transform: translateY(0); }
-      to { transform: translateY(-120vh); }
-    }
-
-    /* 🎂 เค้กทรงกระบอก */
     .cake {
-      position: relative;
-      margin: 60px auto 20px;
-      width: 260px;
-      height: 180px;
-      background: #f5c491;
-      border-radius: 0 0 130px 130px;
-      box-shadow: inset 0 -10px 0 #d28c47;
-      z-index: 5;
+      margin: 20px auto;
+      width: 320px;
     }
 
-    /* ครีมด้านบน */
-    .cake::before {
-      content: "";
-      position: absolute;
-      top: -40px;
-      left: 0;
+    svg {
       width: 100%;
-      height: 60px;
-      background: #fff0dc;
-      border-radius: 120px 120px 0 0;
-      box-shadow: 0 6px 0 #f3d2a8;
-    }
-
-    /* ครีมหยด */
-    .drip {
-      position: absolute;
-      width: 24px;
-      height: 40px;
-      background: #fff0dc;
-      border-radius: 50%;
-      top: 10px;
-    }
-    .drip1 { left: 40px; }
-    .drip2 { left: 120px; height: 50px; }
-    .drip3 { left: 200px; }
-
-    /* โรยเม็ดสี */
-    .sprinkle {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      top: -20px;
-    }
-    .s1 { left: 50px; background: pink; }
-    .s2 { left: 90px; background: yellow; }
-    .s3 { left: 130px; background: lightblue; }
-    .s4 { left: 170px; background: violet; }
-    .s5 { left: 210px; background: limegreen; }
-
-    /* 🎂 ลายตกแต่งเค้ก */
-    .decoration {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      height: 20px;
-      background: repeating-linear-gradient(
-        45deg,
-        #d28c47,
-        #d28c47 10px,
-        #f5c491 10px,
-        #f5c491 20px
-      );
-      border-radius: 10px;
-    }
-
-    /* 🕯️ เทียน */
-    .candle {
-      position: absolute;
-      width: 14px;
-      height: 50px;
-      background: #aaa;
-      top: -70px;
-      border-radius: 4px;
-    }
-    .c1 { left: 80px; }
-    .c2 { left: 123px; }
-    .c3 { left: 166px; }
-
-    /* ไฟเทียน */
-    .flame {
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 16px;
-      height: 24px;
-      background: orange;
-      border-radius: 50%;
-      animation: flicker 0.3s infinite alternate;
-    }
-    @keyframes flicker {
-      from { transform: translateX(-50%) scale(1); }
-      to { transform: translateX(-50%) scale(1.2); }
+      height: auto;
     }
 
     /* ปุ่ม */
     .btn {
-      margin-top: 20px;
-      padding: 12px 24px;
-      background: #c99066;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      z-index: 10;
-      position: relative;
-    }
-    .btn:hover { background: #a66d4f; }
-  </style>
-</head>
-<body>
-
-  <h1>🎂 สุขสันต์วันเกิด! 🎉</h1>
-
-  <!-- 🎂 เค้ก -->
-  <div class="cake">
-    <!-- โรย -->
-    <div class="sprinkle s1"></div>
-    <div class="sprinkle s2"></div>
-    <div class="sprinkle s3"></div>
-    <div class="sprinkle s4"></div>
-    <div class="sprinkle s5"></div>
-    <!-- ครีมหยด -->
-    <div class="drip drip1"></div>
-    <div class="drip drip2"></div>
-    <div class="drip drip3"></div>
-    <!-- เทียน -->
-    <div class="candle c1"><div class="flame"></div></div>
-    <div class="candle c2"><div class="flame"></div></div>
-    <div class="candle c3"><div class="flame"></div></div>
-    <!-- ลายตกแต่ง -->
-    <div class="decoration"></div>
-  </div>
-
-  <!-- ปุ่มเป่าเทียน -->
-  <button class="btn" onclick="blowCandles()">เป่าเทียน</button>
-
-  <script>
-    // 🎈 สุ่มลูกโป่งทั่วจอ
-    const colors = ["red", "blue", "green", "purple", "orange", "pink"];
-    for (let i = 0; i < 6; i++) {
-      let balloon = document.createElement("div");
-      balloon.className = "balloon";
-      balloon.style.left = Math.random() * window.innerWidth + "px";
-      balloon.style.background = colors[i % colors.length];
-      balloon.style.animationDuration = (6 + Math.random() * 4) + "s";
-      document.body.appendChild(balloon);
-    }
-
-    // 🎂 ฟังก์ชันเป่าเทียน
-    function blowCandles() {
-      document.querySelectorAll(".flame").forEach(f => f.style.display = "none");
-
-      const btn = document.querySelector(".btn");
-      btn.innerText = "ไปหน้าสุดท้าย";
-      btn.onclick = () => {
-        window.location.href = "page3.html";
-      };
-    }
-  </script>
-
-</body>
-</html>
-
+      marg
 
 
 
