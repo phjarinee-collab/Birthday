@@ -9,6 +9,7 @@
       background-color: #fff5f5;
       text-align: center;
       padding: 30px;
+      overflow: hidden;
     }
 
     h1 {
@@ -17,7 +18,7 @@
       margin-bottom: 20px;
     }
 
-    /* เค้ก */
+    /* 🎂 เค้ก */
     .cake {
       position: relative;
       width: 320px;
@@ -29,7 +30,7 @@
       overflow: hidden;
     }
 
-    /* ชั้นครีมด้านบน */
+    /* ครีมด้านบน */
     .cream-top {
       position: absolute;
       top: 0;
@@ -40,26 +41,21 @@
       border-radius: 20px 20px 0 0;
     }
 
-    /* ลายครีมหยดสายรุ้ง */
+    /* ครีมหยดสีขาว */
     .cream-drip {
       position: absolute;
       top: 55px;
       left: 0;
       width: 100%;
-      height: 40px;
-      background: radial-gradient(circle at 20px 10px, red 18px, transparent 19px) repeat-x,
-                  radial-gradient(circle at 40px 10px, orange 18px, transparent 19px) repeat-x,
-                  radial-gradient(circle at 60px 10px, yellow 18px, transparent 19px) repeat-x,
-                  radial-gradient(circle at 80px 10px, green 18px, transparent 19px) repeat-x,
-                  radial-gradient(circle at 100px 10px, blue 18px, transparent 19px) repeat-x,
-                  radial-gradient(circle at 120px 10px, violet 18px, transparent 19px) repeat-x;
-      background-size: 120px 40px;
+      height: 25px;
+      background: radial-gradient(circle at 15px 0px, white 15px, transparent 16px) repeat-x;
+      background-size: 40px 25px;
     }
 
-    /* เทียน */
+    /* 🕯️ เทียน */
     .candle {
       position: absolute;
-      bottom: 120px; /* วางบนเค้ก ไม่บังข้อความ */
+      bottom: 120px; /* วางอยู่บนเค้ก */
       width: 14px;
       height: 50px;
       background: repeating-linear-gradient(
@@ -95,6 +91,53 @@
       to   { transform: translateX(-50%) scale(1.2); opacity: 0.8; }
     }
 
+    /* 🎈 ลูกโป่ง */
+    .balloon {
+      position: absolute;
+      width: 50px;
+      height: 65px;
+      border-radius: 50% 50% 50% 50%;
+      background-color: red;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .balloon::after {
+      content: "";
+      position: absolute;
+      top: 65px;
+      left: 50%;
+      width: 2px;
+      height: 60px;
+      background: #555;
+    }
+
+    .balloon:nth-child(1) {
+      left: 10%;
+      background: red;
+      animation-delay: 0s;
+    }
+    .balloon:nth-child(2) {
+      right: 10%;
+      background: blue;
+      animation-delay: 2s;
+    }
+    .balloon:nth-child(3) {
+      left: 20%;
+      background: green;
+      animation-delay: 4s;
+    }
+    .balloon:nth-child(4) {
+      right: 20%;
+      background: orange;
+      animation-delay: 1s;
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-30px); }
+      100% { transform: translateY(0); }
+    }
+
     /* ปุ่ม */
     .btn {
       display: inline-block;
@@ -117,6 +160,13 @@
 <body>
   <h1>🎂 สุขสันต์วันเกิด! 🎉</h1>
 
+  <!-- ลูกโป่ง -->
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+  <div class="balloon"></div>
+
+  <!-- เค้ก -->
   <div class="cake">
     <div class="cream-top"></div>
     <div class="cream-drip"></div>
@@ -130,4 +180,5 @@
   <button class="btn">เป่าเทียน</button>
 </body>
 </html>
+
 
