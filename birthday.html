@@ -14,6 +14,7 @@
     h1 {
       font-size: 28px;
       color: #5c2c0c;
+      margin-bottom: 20px;
     }
 
     /* เค้ก */
@@ -24,7 +25,7 @@
       background: linear-gradient(#87ceeb, #6bbce0);
       border-radius: 20px;
       box-shadow: inset 0 -10px #5a9cbf;
-      margin: 40px auto;
+      margin: 0 auto;
       overflow: hidden;
     }
 
@@ -39,19 +40,94 @@
       border-radius: 20px 20px 0 0;
     }
 
-    /* ลายครีมหยด */
+    /* ลายครีมหยดสายรุ้ง */
     .cream-drip {
       position: absolute;
       top: 55px;
       left: 0;
       width: 100%;
       height: 40px;
-      background: radial-gradient(circle at 20px 10px, #fff 20px, transparent 21px) repeat-x;
-      background-size: 60px 40px;
+      background: radial-gradient(circle at 20px 10px, red 18px, transparent 19px) repeat-x,
+                  radial-gradient(circle at 40px 10px, orange 18px, transparent 19px) repeat-x,
+                  radial-gradient(circle at 60px 10px, yellow 18px, transparent 19px) repeat-x,
+                  radial-gradient(circle at 80px 10px, green 18px, transparent 19px) repeat-x,
+                  radial-gradient(circle at 100px 10px, blue 18px, transparent 19px) repeat-x,
+                  radial-gradient(circle at 120px 10px, violet 18px, transparent 19px) repeat-x;
+      background-size: 120px 40px;
     }
 
     /* เทียน */
     .candle {
-      position: abs
+      position: absolute;
+      bottom: 120px; /* วางบนเค้ก ไม่บังข้อความ */
+      width: 14px;
+      height: 50px;
+      background: repeating-linear-gradient(
+        45deg,
+        #ff66b2,
+        #ff66b2 6px,
+        white 6px,
+        white 12px
+      );
+      border-radius: 3px;
+    }
 
+    /* ตำแหน่งเทียน */
+    .candle:nth-child(3) { left: 90px; }
+    .candle:nth-child(4) { left: 150px; }
+    .candle:nth-child(5) { left: 210px; }
+
+    /* เปลวไฟ */
+    .flame {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 18px;
+      background: radial-gradient(circle, yellow 40%, orange 70%);
+      border-radius: 50%;
+      animation: flicker 0.3s infinite alternate;
+    }
+
+    @keyframes flicker {
+      from { transform: translateX(-50%) scale(1); opacity: 1; }
+      to   { transform: translateX(-50%) scale(1.2); opacity: 0.8; }
+    }
+
+    /* ปุ่ม */
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #c7896d;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 30px;
+      box-shadow: 0 4px #a86b55;
+    }
+
+    .btn:hover {
+      background: #b4785d;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎂 สุขสันต์วันเกิด! 🎉</h1>
+
+  <div class="cake">
+    <div class="cream-top"></div>
+    <div class="cream-drip"></div>
+
+    <!-- เทียน -->
+    <div class="candle"><div class="flame"></div></div>
+    <div class="candle"><div class="flame"></div></div>
+    <div class="candle"><div class="flame"></div></div>
+  </div>
+
+  <button class="btn">เป่าเทียน</button>
+</body>
+</html>
 
