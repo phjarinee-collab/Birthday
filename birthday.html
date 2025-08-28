@@ -5,89 +5,130 @@
   <title>Happy Birthday</title>
   <style>
     body {
-      background: #fff6f6;
-      font-family: "Prompt", sans-serif;
-      text-align: center;
       margin: 0;
-      padding: 0;
-      overflow: hidden; /* กัน scroll จากลูกโป่ง */
+      background: #fff6f6;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      overflow: hidden;
     }
 
     h1 {
       margin-top: 20px;
-      font-size: 2.2em;
-      color: #6a2c2c;
-      position: relative;
-      z-index: 10;
+      font-size: 2em;
+      color: #6b3e26;
     }
 
+    /* 🎂 Cake */
     .cake {
-      margin: 20px auto;
-      width: 320px;
       position: relative;
-      z-index: 10;
+      width: 280px;
+      height: 180px;
+      margin: 40px auto;
+      background: #add8f0;
+      border-radius: 0 0 140px 140px;
+      overflow: hidden;
+      box-shadow: 0 6px 0 #8ab5d2;
     }
 
-    svg {
+    .cream {
+      position: absolute;
+      top: -30px;
+      left: 0;
       width: 100%;
-      height: auto;
+      height: 80px;
+      background: #fff;
+      border-radius: 140px 140px 0 0;
     }
 
-    /* ปุ่ม */
-    .btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background: #c58a65;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 1em;
-      cursor: pointer;
-      transition: background 0.3s;
-      position: relative;
-      z-index: 10;
+    .drip {
+      position: absolute;
+      width: 30px;
+      height: 40px;
+      background: #fff;
+      border-radius: 15px;
+      top: 40px;
     }
-    .btn:hover {
-      background: #a36d4f;
-    }
+    .drip:nth-child(1) { left: 40px; }
+    .drip:nth-child(2) { left: 120px; }
+    .drip:nth-child(3) { left: 200px; }
 
-    /* เอฟเฟกไฟกระพริบ */
+    /* โรยสี */
+    .sprinkle {
+      position: absolute;
+      width: 8px;
+      height: 4px;
+      border-radius: 2px;
+      transform: rotate(20deg);
+    }
+    .sprinkle:nth-child(1) { top: 20px; left: 50px; background: pink; }
+    .sprinkle:nth-child(2) { top: 35px; left: 100px; background: yellow; }
+    .sprinkle:nth-child(3) { top: 25px; left: 150px; background: green; }
+    .sprinkle:nth-child(4) { top: 40px; left: 190px; background: purple; }
+
+    /* เทียน */
+    .candle {
+      position: absolute;
+      bottom: 120px;
+      width: 12px;
+      height: 50px;
+      background: repeating-linear-gradient(45deg, #fff, #fff 6px, #ff69b4 6px, #ff69b4 12px);
+      border-radius: 3px;
+    }
+    .candle:nth-child(1) { left: 60px; }
+    .candle:nth-child(2) { left: 130px; }
+    .candle:nth-child(3) { left: 200px; }
+
     .flame {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 20px;
+      background: radial-gradient(circle, #ff0 40%, orange 70%, transparent 80%);
+      border-radius: 50% 50% 50% 50%;
       animation: flicker 0.3s infinite;
-      transform-origin: center;
     }
 
     @keyframes flicker {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.7; }
-      100% { transform: scale(1); opacity: 1; }
+      0% { transform: translateX(-50%) scale(1); opacity: 1; }
+      50% { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
+      100% { transform: translateX(-50%) scale(1); opacity: 1; }
     }
-
-    .hidden { display: none; }
 
     /* ลูกโป่ง */
     .balloon {
       position: absolute;
-      bottom: -120px;
       width: 40px;
-      height: 60px;
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      height: 50px;
+      background: red;
+      border-radius: 50% 50% 50% 50%;
       opacity: 0.8;
-      z-index: 1;
+      animation: float 8s linear infinite;
     }
     .balloon::after {
       content: "";
       position: absolute;
-      top: 60px;
+      bottom: -20px;
       left: 50%;
       width: 2px;
-      height: 60px;
-      background: #555;
-      transform: translateX(-50%);
+      height: 30px;
+      background: #666;
     }
-    @keyframes floatUp {
-      0% { transform: translateY(0); opacity: 0.9; }
-      100% { transform: translateY(-120vh); opacity: 0; }
+    @keyframes float {
+      0% { transform: translateY(100vh); }
+      100% { transform: translateY(-200px); }
+    }
+
+    button {
+      background: #c98866;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -96,88 +137,54 @@
   <h1>🎂 สุขสันต์วันเกิด! 🎉</h1>
 
   <div class="cake">
-    <svg id="cake-svg" viewBox="0 0 300 260">
-      <!-- จาน -->
-      <ellipse cx="150" cy="240" rx="130" ry="18" fill="#ccc"/>
+    <div class="cream"></div>
+    <div class="drip"></div>
+    <div class="drip"></div>
+    <div class="drip"></div>
+    <div class="sprinkle"></div>
+    <div class="sprinkle"></div>
+    <div class="sprinkle"></div>
+    <div class="sprinkle"></div>
 
-      <!-- ตัวเค้ก -->
-      <rect x="40" y="90" width="220" height="130" rx="20" ry="20" fill="#87c2f5"/>
-      
-      <!-- ครีมด้านบน -->
-      <ellipse cx="150" cy="90" rx="110" ry="28" fill="#fff0dc"/>
-      <path d="M40,110 Q150,140 260,110" fill="#fff0dc" stroke="#f3d2a8" stroke-width="2"/>
-
-      <!-- ครีมหยด -->
-      <ellipse cx="80" cy="120" rx="10" ry="20" fill="#fff0dc"/>
-      <ellipse cx="150" cy="125" rx="10" ry="22" fill="#fff0dc"/>
-      <ellipse cx="220" cy="120" rx="10" ry="20" fill="#fff0dc"/>
-
-      <!-- ลายครีมรอบตัว -->
-      <path d="M40,170 Q80,190 120,170 Q160,150 200,170 Q240,190 260,170"
-            fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
-
-      <!-- เทียน -->
-      <rect x="110" y="40" width="15" height="50" fill="pink"/>
-      <rect x="140" y="40" width="15" height="50" fill="skyblue"/>
-      <rect x="170" y="40" width="15" height="50" fill="limegreen"/>
-
-      <!-- ไฟ -->
-      <ellipse class="flame" id="flame1" cx="117" cy="35" rx="7" ry="12" fill="orange"/>
-      <ellipse class="flame" id="flame2" cx="147" cy="35" rx="7" ry="12" fill="orange"/>
-      <ellipse class="flame" id="flame3" cx="177" cy="35" rx="7" ry="12" fill="orange"/>
-    </svg>
+    <div class="candle">
+      <div class="flame"></div>
+    </div>
+    <div class="candle">
+      <div class="flame"></div>
+    </div>
+    <div class="candle">
+      <div class="flame"></div>
+    </div>
   </div>
 
-  <button id="blowBtn" class="btn">เป่าเทียน</button>
-  <button id="nextBtn" class="btn hidden" onclick="goNext()">ไปหน้าสุดท้าย</button>
+  <button id="blowBtn">เป่าเทียน</button>
+  <button id="nextBtn" style="display:none;">ไปหน้าสาม</button>
 
   <script>
-    const blowBtn = document.getElementById("blowBtn");
-    const nextBtn = document.getElementById("nextBtn");
+    // 🎈 ลูกโป่งสุ่มทั่วจอ
+    const colors = ["red", "blue", "green", "purple", "orange", "pink"];
+    for (let i = 0; i < 12; i++) {
+      let b = document.createElement("div");
+      b.className = "balloon";
+      b.style.left = Math.random() * window.innerWidth + "px";
+      b.style.background = colors[Math.floor(Math.random() * colors.length)];
+      b.style.animationDuration = (6 + Math.random() * 5) + "s";
+      document.body.appendChild(b);
+    }
 
-    blowBtn.addEventListener("click", () => {
-      document.getElementById("flame1").style.display = "none";
-      document.getElementById("flame2").style.display = "none";
-      document.getElementById("flame3").style.display = "none";
-      blowBtn.classList.add("hidden");
-      nextBtn.classList.remove("hidden");
+    // ปุ่มเป่าเทียน
+    document.getElementById("blowBtn").addEventListener("click", () => {
+      document.querySelectorAll(".flame").forEach(f => f.style.display = "none");
+      document.getElementById("blowBtn").style.display = "none";
+      document.getElementById("nextBtn").style.display = "inline-block";
     });
 
-    function goNext() {
-      window.location.href = "page3.html"; // ไปหน้าสาม (ซองจดหมาย)
-    }
-
-    // ฟังก์ชันสร้างลูกโป่ง
-    function createBalloon() {
-      const balloon = document.createElement("div");
-      balloon.className = "balloon";
-      
-      // สีสุ่ม
-      const colors = ["#ff6b6b", "#feca57", "#1dd1a1", "#54a0ff", "#ff9ff3", "#5f27cd"];
-      balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
-
-      // ตำแหน่ง x สุ่ม
-      balloon.style.left = Math.random() * 100 + "vw";
-
-      // ขนาดสุ่ม
-      const scale = 0.6 + Math.random() * 0.8;
-      balloon.style.transform = `scale(${scale})`;
-
-      // ความเร็วสุ่ม
-      const duration = 8 + Math.random() * 6;
-      balloon.style.animation = `floatUp ${duration}s linear forwards`;
-
-      document.body.appendChild(balloon);
-
-      // ลบออกหลังจบ animation
-      setTimeout(() => {
-        balloon.remove();
-      }, duration * 1000);
-    }
-
-    // สร้างลูกโป่งเรื่อย ๆ
-    setInterval(createBalloon, 800);
+    // ไปหน้าสาม
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      window.location.href = "page3.html"; // 👉 แก้เป็นไฟล์หน้าสามจริง
+    });
   </script>
+
 </body>
 </html>
 
