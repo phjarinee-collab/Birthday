@@ -9,10 +9,15 @@
       background-color: #fff6f6;
       font-family: "Arial", sans-serif;
       overflow: hidden;
+      margin: 0;
+      padding: 0;
     }
+
     h1 {
       color: #7a3e3e;
       margin-top: 20px;
+      position: relative;
+      z-index: 10;
     }
 
     /* 🎈 ลูกโป่ง */
@@ -21,9 +26,9 @@
       bottom: -150px;
       width: 60px;
       height: 80px;
-      border-radius: 50% 50% 50% 50%;
+      border-radius: 50%;
       opacity: 0.8;
-      animation: floatUp 8s linear infinite;
+      animation: floatUp linear infinite;
     }
     .balloon::after {
       content: "";
@@ -35,19 +40,20 @@
       background: #555;
     }
     @keyframes floatUp {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-120vh); }
+      from { transform: translateY(0); }
+      to { transform: translateY(-120vh); }
     }
 
-    /* 🎂 เค้ก */
+    /* 🎂 เค้กทรงกระบอก */
     .cake {
       position: relative;
-      margin: 50px auto;
+      margin: 60px auto 20px;
       width: 260px;
-      height: 160px;
+      height: 180px;
       background: #f5c491;
       border-radius: 0 0 130px 130px;
       box-shadow: inset 0 -10px 0 #d28c47;
+      z-index: 5;
     }
 
     /* ครีมด้านบน */
@@ -84,13 +90,13 @@
       border-radius: 50%;
       top: -20px;
     }
-    .s1 { left: 40px; background: pink; }
-    .s2 { left: 80px; background: yellow; }
-    .s3 { left: 120px; background: lightblue; }
-    .s4 { left: 160px; background: violet; }
-    .s5 { left: 200px; background: limegreen; }
+    .s1 { left: 50px; background: pink; }
+    .s2 { left: 90px; background: yellow; }
+    .s3 { left: 130px; background: lightblue; }
+    .s4 { left: 170px; background: violet; }
+    .s5 { left: 210px; background: limegreen; }
 
-    /* 🎂 ตกแต่งลายเค้ก */
+    /* 🎂 ลายตกแต่งเค้ก */
     .decoration {
       position: absolute;
       bottom: 30px;
@@ -130,7 +136,7 @@
       width: 16px;
       height: 24px;
       background: orange;
-      border-radius: 50% 50% 50% 50%;
+      border-radius: 50%;
       animation: flicker 0.3s infinite alternate;
     }
     @keyframes flicker {
@@ -148,6 +154,8 @@
       border-radius: 8px;
       font-size: 16px;
       cursor: pointer;
+      z-index: 10;
+      position: relative;
     }
     .btn:hover { background: #a66d4f; }
   </style>
@@ -180,7 +188,7 @@
   <button class="btn" onclick="blowCandles()">เป่าเทียน</button>
 
   <script>
-    // 🎈 สุ่มลูกโป่ง
+    // 🎈 สุ่มลูกโป่งทั่วจอ
     const colors = ["red", "blue", "green", "purple", "orange", "pink"];
     for (let i = 0; i < 6; i++) {
       let balloon = document.createElement("div");
@@ -191,21 +199,20 @@
       document.body.appendChild(balloon);
     }
 
-    // 🎂 เป่าเทียน
+    // 🎂 ฟังก์ชันเป่าเทียน
     function blowCandles() {
       document.querySelectorAll(".flame").forEach(f => f.style.display = "none");
 
       const btn = document.querySelector(".btn");
       btn.innerText = "ไปหน้าสุดท้าย";
       btn.onclick = () => {
-        window.location.href = "page3.html"; // 👉 ลิงก์ไปหน้าสาม
+        window.location.href = "page3.html";
       };
     }
   </script>
 
 </body>
 </html>
-
 
 
 
